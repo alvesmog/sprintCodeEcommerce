@@ -4,7 +4,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/alvesmog/sprintCodeEcommerce?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/alvesmog/sprintCodeEcommerce?style=social)
 
-Esse é o repositório do projeto final do Módulo 9 da Pós-graduaçaão 'Software Programming for Work', da Unit / Porto Digital. No projeto foi utilizado para unir os conceitos de lógica de programação, paradigma de orientação a objetos (classes, herança, interface).
+Esse é o repositório do projeto final do Módulo 9 da Pós-graduação 'Software Programming for Work', da Unit / Porto Digital. No projeto foi utilizado para unir os conceitos de lógica de programação, paradigma de orientação a objetos (classes, herança, interface).
 
 ## Usando o "E-commerce"
 
