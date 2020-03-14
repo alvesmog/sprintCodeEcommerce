@@ -7,25 +7,19 @@ package br.com.spring.code.ecommerce.duvidas;
 
 import java.util.List;
 
+import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
+
 public class Duvidas {
 	private Integer  id;
 	private Integer idProduto;
 	private List<Interacoes> interacoes;
 	
-	
-	
-	/**
-	 * TODO
-	 * Construtor necessita do produto para pegar o ID do produto
 	 
 	public Duvidas(Integer id, Produto produto) {
-	//	this.idProduto= produto.getId();
+		this.idProduto= produto.getId();
 		this.id = id;
 		
 	}
-	*/
-	
-
 	
 	
 	public Integer getId() {
