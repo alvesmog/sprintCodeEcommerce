@@ -5,12 +5,10 @@ import java.util.List;
 
 public class RepositorioPessoas {
 
-	List<Pessoa> listaDePessoas;
+	List<Pessoa> listaDePessoas = new ArrayList<Pessoa>();
 
-	public RepositorioPessoas() {
-
-		listaDePessoas = new ArrayList<Pessoa>();
-
+	public RepositorioPessoas(List<Pessoa> listaDePessoas) {
+		this.listaDePessoas = listaDePessoas;
 	}
 
 	public void exibirTodasPessoas() {
@@ -25,15 +23,9 @@ public class RepositorioPessoas {
 
 	public Pessoa procurarPessoa(Integer idProcurado) {
 
-		
-
 		if (idProcurado != null && !listaDePessoas.isEmpty()) {
 
-		
-
 			Pessoa pessoaProcurada = new Pessoa();
-
-			
 
 			for (int i = 0; i < listaDePessoas.size(); i++) {
 
@@ -45,9 +37,9 @@ public class RepositorioPessoas {
 
 			}
 
-			return pessoaProcurada;	
+			return pessoaProcurada;
 
-		} 
+		}
 
 		return null;
 
@@ -61,31 +53,31 @@ public class RepositorioPessoas {
 			System.out.println(pessoaProcurada.toString());
 			return;
 
-		}	
+		}
 
 		System.out.println("Pessoa com esse ID não encontrada.");
 
 	}
-	
+
 	public void adicionar(Pessoa pessoa) {
 
 		listaDePessoas.add(pessoa);
 
 	}
 
-	public void remover(Integer idParaRemover) {		
+	public void remover(Integer idParaRemover) {
 
 		Pessoa procurada = procurarPessoa(idParaRemover);
 		if (procurada != null) {
-			
+
 			listaDePessoas.remove(procurada);
 			System.out.println("Pessoa removida com sucesso.");
 			return;
-		
+
 		}
 
 		System.out.println("Pessoa com esse ID não encontrada.");
 
 	}
-	
+
 }
