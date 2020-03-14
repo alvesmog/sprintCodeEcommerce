@@ -65,7 +65,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [Nome: " + nome + "]";
+		return "Categoria [" + nome + "]";
 	}
 	
 	

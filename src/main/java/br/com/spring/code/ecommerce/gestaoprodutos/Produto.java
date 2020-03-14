@@ -114,7 +114,7 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "Produto [titulo=" + titulo 
-				+ ", Categoria=" + categoria 
+				+ ", Categoria=" + categoria.toString() 
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}
