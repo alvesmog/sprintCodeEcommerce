@@ -16,8 +16,9 @@ public class Pessoa {
 
 	}
 
-	public Pessoa(Integer id, String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa, Endereco endereco, Usuario usuario, Integer pontos) {
-		this.id = id;
+	public Pessoa(String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa,
+			Endereco endereco, Usuario usuario, Integer pontos) {
+		this.id = usuario.getId();
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
@@ -30,10 +31,6 @@ public class Pessoa {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -98,6 +95,6 @@ public class Pessoa {
 
 	public void setPontos(Integer pontos) {
 		this.pontos = pontos;
-	}	
+	}
 
 }
