@@ -1,5 +1,7 @@
 package br.com.spring.code.ecommerce.atendimento;
 
+import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
+
 public class Atendimento {
 	private Integer id;
 	private Integer idUsuario;
