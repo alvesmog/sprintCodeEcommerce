@@ -2,6 +2,7 @@ package br.com.spring.code.ecommerce.gestaopessoas;
 
 public class Endereco {
 
+	private Integer id;
 	private String logradouro;
 	private String numero;
 	private String bairro;
@@ -13,13 +14,12 @@ public class Endereco {
 	private String caixaPostal;
 
 	public Endereco() {
-		super();
-
+		
 	}
 
-	public Endereco(String logradouro, String numero, String bairro, String municipio, String estado, String ref,
+	public Endereco(Integer id, String logradouro, String numero, String bairro, String municipio, String estado, String ref,
 			String cep, String pais, String caixaPostal) {
-		super();
+		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.bairro = bairro;
@@ -29,6 +29,14 @@ public class Endereco {
 		this.cep = cep;
 		this.pais = pais;
 		this.caixaPostal = caixaPostal;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLogradouro() {
