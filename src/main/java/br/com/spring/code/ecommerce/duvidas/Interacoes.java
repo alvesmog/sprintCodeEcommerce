@@ -1,5 +1,7 @@
 package br.com.spring.code.ecommerce.duvidas;
 
+import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
+
 public class Interacoes {
 	private Integer id;
 	private String pergunta;
@@ -7,19 +9,17 @@ public class Interacoes {
 	private StatusInteracoes status;
 	private String resposta;
 	
-	/**
-	 * Necessita do ID do usuário que fez a pergunta
+	
 	public Interacoes(Integer id, String pergunta, Usuario usuario) {
 		this.idUsuarioPergunta= usuario.getId();
 		this.id = id;
 		this.pergunta = pergunta;
-		this.idUsuarioPergunta = idUsuarioPergunta;
-		this.status = status.analise;
+		this.status = StatusInteracoes.analise;
 	}
-	*/
+	
 	
 	public void inativar() {
-		this.status= status.inativo;
+		this.status= StatusInteracoes.inativo;
 	}
 
 	public Integer getId() {
