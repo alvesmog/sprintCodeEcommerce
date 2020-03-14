@@ -1,5 +1,9 @@
 package br.com.spring.code.ecommerce.gestaoprodutos;
 
-public class Estado {
+public enum Estado {
+	
+	USADO,
+	NOVO,
+	SEMINOVO
 
 }
