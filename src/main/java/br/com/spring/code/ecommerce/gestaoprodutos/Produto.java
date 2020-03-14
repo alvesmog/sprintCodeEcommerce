@@ -119,5 +119,13 @@ public class Produto {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto [titulo=" + titulo 
+				+ ", Categoria=" + categoria.toString() 
+				+ ", Estado=" + estado 
+				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
+	}
 	
 }
