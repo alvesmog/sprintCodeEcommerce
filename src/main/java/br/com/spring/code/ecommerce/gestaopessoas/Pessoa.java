@@ -8,14 +8,15 @@ public class Pessoa {
 	private String email;
 	private float confiabilidade;
 	private TipoPessoa pessoa;
+	private Usuario usuario;
 	private Endereco endereco;
+	private Integer pontos;
 
 	public Pessoa() {
 
 	}
 
-	public Pessoa(Integer id, String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa,
-			Endereco endereco) {
+	public Pessoa(Integer id, String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa, Endereco endereco, Usuario usuario, Integer pontos) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -23,6 +24,8 @@ public class Pessoa {
 		this.confiabilidade = confiabilidade;
 		this.pessoa = pessoa;
 		this.endereco = endereco;
+		this.usuario = usuario;
+		this.pontos = pontos;
 	}
 
 	public Integer getId() {
@@ -72,5 +75,29 @@ public class Pessoa {
 	public void setPessoa(TipoPessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
+	}	
 
 }

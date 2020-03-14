@@ -3,16 +3,16 @@ package br.com.spring.code.ecommerce.gestaopessoas;
 public class Usuario {
 
 	private Integer id;
-	private String email;
+	private String login;
 	private String senha;
 
 	public Usuario() {
 
 	}
 
-	public Usuario(Integer id, String email, String senha) {
+	public Usuario(Integer id, String login, String senha) {
 		this.id = id;
-		this.email = email;
+		this.login = login;
 		this.senha = senha;
 	}	
 
@@ -24,12 +24,12 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
