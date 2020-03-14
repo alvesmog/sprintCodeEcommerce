@@ -10,6 +10,7 @@ public class Produto {
 	//TODO: Encontrar o tipo que se encaixa em uma foto.
 	private String foto;	
 	private Categoria categoria;
+	private Integer quantidade;
 	private Estado estado;
 	private FaixaEtaria faixaEtaria;
 	
@@ -84,6 +85,14 @@ public class Produto {
 	public void setTamanho(FaixaEtaria faixaEtaria) {
 		this.faixaEtaria = faixaEtaria;
 	}
+	
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	// Hashcode & `equals`
 	@Override
@@ -110,6 +119,5 @@ public class Produto {
 			return false;
 		return true;
 	}
-	
 	
 }
