@@ -1,11 +1,18 @@
 package br.com.spring.code.acessoDadosJDBC.dao.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.spring.code.acessoDadosJDBC.dao.EnderecoDAO;
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 
 public class EnderecoDAOJDBC implements EnderecoDAO {
+	
+	private Connection conn = null;
+	
+	public EnderecoDAOJDBC(Connection conn) {
+		this.conn = conn;
+	}
 
 	public void insert(Endereco end) {
 		// TODO Auto-generated method stub
