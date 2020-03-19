@@ -10,7 +10,7 @@ public class FabricaDao {
 		return new PessoaDAOJDBC(DB.getConnection());
 	}
 	
-	public static EnderecoDAO criarDepartamentoDao() {
+	public static EnderecoDAO criarEnderecoDAO() {
 		return new EnderecoDAOJDBC(DB.getConnection());
 	}
 
