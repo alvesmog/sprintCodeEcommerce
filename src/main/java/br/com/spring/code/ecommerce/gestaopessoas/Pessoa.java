@@ -1,13 +1,16 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
 	private String telefone;
 	private String email;
 	private float confiabilidade;
-	private TipoPessoa pessoa;
+	private String cpfOUCnpj;
 	private Usuario usuario;
 	private Endereco endereco;
 	private Integer pontos;
@@ -16,14 +19,14 @@ public class Pessoa {
 
 	}
 
-	public Pessoa(String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa,
-			Endereco endereco, Usuario usuario, Integer pontos) {
+	public Pessoa(String nome, String telefone, String email, float confiabilidade, String cpfOUCnpj, Endereco endereco,
+			Usuario usuario, Integer pontos) {
 		this.id = usuario.getId();
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.confiabilidade = confiabilidade;
-		this.pessoa = pessoa;
+		this.cpfOUCnpj = cpfOUCnpj;
 		this.endereco = endereco;
 		this.usuario = usuario;
 		this.pontos = pontos;
@@ -31,6 +34,10 @@ public class Pessoa {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -65,12 +72,12 @@ public class Pessoa {
 		this.confiabilidade = confiabilidade;
 	}
 
-	public TipoPessoa getPessoa() {
-		return pessoa;
+	public String getCpfOUCnpj() {
+		return cpfOUCnpj;
 	}
 
-	public void setPessoa(TipoPessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setCpfOUCnpj(String cpfOUCnpj) {
+		this.cpfOUCnpj = cpfOUCnpj;
 	}
 
 	public Endereco getEndereco() {
