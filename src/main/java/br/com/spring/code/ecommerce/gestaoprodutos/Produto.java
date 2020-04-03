@@ -1,5 +1,7 @@
 package br.com.spring.code.ecommerce.gestaoprodutos;
 
+import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
+
 public class Produto {
 	
 	// Atributos
@@ -13,14 +15,16 @@ public class Produto {
 	private Integer quantidade;
 	private Estado estado;
 	private FaixaEtaria faixaEtaria;
+	private Integer idPessoa;
 	
 	// Construtor
 	
-	public Produto(Integer id, String titulo, String descricao, String foto) {
+	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.foto = foto;
+		this.idPessoa = pessoa.getId();
 	}
 	
 	// Construtor vazio
@@ -92,6 +96,18 @@ public class Produto {
 	
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public void setFaixaEtaria(FaixaEtaria faixaEtaria) {
+		this.faixaEtaria = faixaEtaria;
+	}
+	
+	public FaixaEtaria getFaixaEtaria() {
+		return faixaEtaria;
+	}
+
+	public Integer getIdPessoa() {
+		return idPessoa;
 	}
 
 	// Hashcode & `equals`
