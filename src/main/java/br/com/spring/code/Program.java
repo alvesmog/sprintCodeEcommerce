@@ -17,6 +17,7 @@ public class Program {
 		EnderecoDAO enderecoDAO = FabricaDao.criarEnderecoDAO();
 		
 		enderecoDAO.insert(end1);
-
+		
+		
 	}
 }
