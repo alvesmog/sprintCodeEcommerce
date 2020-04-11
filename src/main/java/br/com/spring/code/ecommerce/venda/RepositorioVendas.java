@@ -1,4 +1,4 @@
-package br.com.spring.code.ecommerce.vendas;
+package br.com.spring.code.ecommerce.venda;
 
 import java.util.*;
 
