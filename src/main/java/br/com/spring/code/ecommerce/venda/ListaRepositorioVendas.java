@@ -5,17 +5,17 @@ import java.util.List;
 
 public class ListaRepositorioVendas implements RepositorioVendas {
 
-	public void registrarVenda(Vendas vendas) {
+	public void registrarVenda(Venda venda) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public List<Vendas> listarvendas() {
+	public List<Venda> listarvendas() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Vendas procurarVenda(Date data) {
+	public Venda procurarVenda(Date data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,8 +4,8 @@ import java.util.*;
 
 public interface RepositorioVendas {
 
-	void registrarVenda(Vendas vendas);
-	List<Vendas> listarvendas();
-	Vendas procurarVenda(Date data);
+	void registrarVenda(Venda venda);
+	List<Venda> listarvendas();
+	Venda procurarVenda(Date data);
 	
 }

@@ -14,7 +14,7 @@ import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
  * Definição: classe que representa os pagamentos do sistema de e-commerce.
  *
  */
-public class Vendas {	
+public class Venda {	
 	
 	private Pessoa pessoa;
 	private List<Anuncio> anuncio;
