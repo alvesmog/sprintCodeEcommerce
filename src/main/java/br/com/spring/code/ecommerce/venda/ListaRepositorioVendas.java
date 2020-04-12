@@ -20,7 +20,17 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 	 * 	O repositório em lista simula o banco de dados onde serão 
 	 * 	guardadas as informações de cada objeto Venda.
 	 */
-	List<Venda> repositorioDeVendas = new ArrayList<Venda>();
+	List<Venda> repositorioDeVendas;
+	
+	
+	// Construtor
+	
+	/**
+	 * Construtor de um repositório de objetos `Venda` implementado em {@code ArrayList()};
+	 */
+	public ListaRepositorioVendas() {
+		this.repositorioDeVendas = new ArrayList<Venda>();
+	}
 	
 	// Métodos
 	
