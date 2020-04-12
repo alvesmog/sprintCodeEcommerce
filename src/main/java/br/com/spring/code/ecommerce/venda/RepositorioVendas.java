@@ -5,7 +5,7 @@ import java.util.*;
 public interface RepositorioVendas {
 
 	void registrarVenda(Venda venda);
-	List<Venda> listarvendas();
+	List<Venda> listarVendas();
 	Venda procurarVenda(Date data);
 	
 }
