@@ -70,6 +70,10 @@ public class Venda {
 	public TipoDeEnvio getEnvio() {
 		return envio;
 	}
+	
+	public Financeiro getFinanceiro() {
+		return financeiro;
+	}
 
 	public boolean isVendaConfirmada() {
 		return vendaConfirmada;
