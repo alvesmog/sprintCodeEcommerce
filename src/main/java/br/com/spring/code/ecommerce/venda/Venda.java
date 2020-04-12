@@ -125,5 +125,27 @@ public class Venda {
 			setVendaConfirmada(false);
 		}
 	}
+
+	@Override
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("Venda [ id = ");
+		builder.append(id);
+		builder.append(", pessoa = ");
+		builder.append(pessoa);
+		builder.append(", anuncio = ");
+		builder.append(anuncio);
+		builder.append(", envio = ");
+		builder.append(envio);
+		builder.append(", vendaConfirmada = ");
+		builder.append(vendaConfirmada);
+		builder.append(", Finaceiro ID = ");
+		builder.append(getFinanceiroID());
+		builder.append(" ]");
+		return builder.toString();
+	}
+	
+	
 	
 }
