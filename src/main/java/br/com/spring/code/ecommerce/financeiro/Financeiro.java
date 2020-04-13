@@ -157,5 +157,29 @@ public class Financeiro {
 		// Guarda o valor do envio no atributo `valorFrete`:
 		this.setValorFrete(valorDoEnvio);
 	}
+	
+	/**
+	 * {@code toString()} customizado para objeto `Financeiro`
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Financeiro [ id = ");
+		builder.append(id);
+		builder.append(", formaPagamento = ");
+		builder.append(formaPagamento);
+		builder.append(", valorTotal = ");
+		builder.append(valorTotal);
+		builder.append(", valorComissao = ");
+		builder.append(valorComissao);
+		builder.append(", valorFrete = ");
+		builder.append(valorFrete);
+		builder.append(", dataDoPagamento = ");
+		builder.append(dataDoPagamento);
+		builder.append(" ]");
+		return builder.toString();
+	}
+	
+	
 
 }
