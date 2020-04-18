@@ -1,6 +1,7 @@
 package br.com.spring.code.ecommerce.atendimento;
 
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
+import br.com.spring.code.ecommerce.vendas.Vendas;
 
 public class Atendimento {
 	private Integer id;
@@ -11,27 +12,20 @@ public class Atendimento {
 	private TipoAtendimento tipoAtendimento;
 	private StatusAtendimento status;
 	
-	
-	/** TODO
-	 * 
-	
-	 * @param pessoa
-	 * Quem será o identificador único  do usuário/pessoa?
-	 
-	
-	public Atendimento(Integer id, Pessoa pessoa, String assunto, Venda venda, 
+
+	public Atendimento(Integer id, Pessoa pessoa, String assunto, Vendas venda, 
 			TipoAtendimento tipoAtendimento) {
 	
 		this.id = id;
 		this.idUsuario = pessoa.getId();;
 		this.assunto = assunto;
-		this.idVenda = idVenda;
+	//	this.idVenda = venda.;
 		this.email = pessoa.getEmail();
 		this.tipoAtendimento = tipoAtendimento;
-		this.status = status.novo;
+		this.status = StatusAtendimento.novo;
 	}
 	
-	*/
+
 	
 	public Integer getId() {
 		return id;
