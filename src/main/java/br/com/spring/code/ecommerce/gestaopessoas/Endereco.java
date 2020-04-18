@@ -110,5 +110,14 @@ public class Endereco {
 	public void setCaixaPostal(String caixaPostal) {
 		this.caixaPostal = caixaPostal;
 	}
+	
+	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
+	@Override
+ 	public String toString() {
+ 		return "Endereco [Id()=" + getId() + ", Logradouro()=" + getLogradouro() + ", Numero()=" + getNumero()
+ 			+ ", Bairro()=" + getBairro() + ", Municipio()=" + getMunicipio() + ", Estado()=" + getEstado()
+ 			+ ", Ref()=" + getRef() + ", Cep()=" + getCep() + ", Pais()=" + getPais()
+ 			+ ", CaixaPostal()=" + getCaixaPostal() + "]";
+ 	}
 
 }
