@@ -39,5 +39,10 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
+	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
+	@Override
+ 	public String toString() {
+ 		return "Usuario [Id()=" + getId() + ", Login()=" + getLogin() + ", Senha()=" + getSenha() + "]";
+ 	}
 }
