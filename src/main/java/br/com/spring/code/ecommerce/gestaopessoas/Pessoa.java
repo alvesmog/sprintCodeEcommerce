@@ -6,7 +6,7 @@ public class Pessoa {
 	private String nome;
 	private String telefone;
 	private String email;
-	private float confiabilidade;
+	private double confiabilidade;
 	private TipoPessoa pessoa;
 	private Usuario usuario;
 	private Endereco endereco;
@@ -16,7 +16,7 @@ public class Pessoa {
 
 	}
 
-	public Pessoa(String nome, String telefone, String email, float confiabilidade, TipoPessoa pessoa,
+	public Pessoa(String nome, String telefone, String email, double confiabilidade, TipoPessoa pessoa,
 			Endereco endereco, Usuario usuario, Integer pontos) {
 		this.id = usuario.getId();
 		this.nome = nome;
@@ -57,11 +57,11 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public float getConfiabilidade() {
+	public double getConfiabilidade() {
 		return confiabilidade;
 	}
 
-	public void setConfiabilidade(float confiabilidade) {
+	public void setConfiabilidade(double confiabilidade) {
 		this.confiabilidade = confiabilidade;
 	}
 
@@ -96,5 +96,13 @@ public class Pessoa {
 	public void setPontos(Integer pontos) {
 		this.pontos = pontos;
 	}
-
+	
+	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
+	@Override
+ 	public String toString() {
+ 		return "Pessoa [ID=" + getId() + ", Nome=" + getNome() + ", Telefone()=" + getTelefone()
+ 			+ ", Email()=" + getEmail() + ", Confiabilidade()=" + getConfiabilidade() + ", Pessoa()="
+ 			+ getPessoa() + ", Endereco()=" + getEndereco() + ", Usuario()=" + getUsuario() 
+ 			+ ", Pontos()=" + getPontos() + "]";
+ 	}
 }
