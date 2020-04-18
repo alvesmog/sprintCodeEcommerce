@@ -102,4 +102,14 @@ public class Anuncio {
 		
 	}
 
+
+	@Override
+	public String toString() {
+		return "Anuncio [IdAnuncio=" + getIdAnuncio() + ", Pessoa=" + getPessoa() + ", Produto="
+				+ getProduto() + ", DataAnuncio=" + getDataAnuncio() + ", Duvidas=" + getDuvidas()
+				+ ", Valor=" + getValor() + ", Localizacao=" + getLocalizacao() + "]";
+	}
+	
+	
+
 }
