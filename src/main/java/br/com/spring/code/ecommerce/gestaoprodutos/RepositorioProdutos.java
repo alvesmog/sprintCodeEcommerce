@@ -10,7 +10,6 @@ public class RepositorioProdutos {
 
 	// Construtor
 	public RepositorioProdutos() {
-		// TODO Auto-generated constructor stub
 		
 		listaDeProdutos = new ArrayList<Produto>();
 	}

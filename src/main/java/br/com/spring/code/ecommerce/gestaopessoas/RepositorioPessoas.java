@@ -7,6 +7,10 @@ public class RepositorioPessoas {
 
 	List<Pessoa> listaDePessoas = new ArrayList<Pessoa>();
 
+	public RepositorioPessoas() {
+		listaDePessoas = new ArrayList<Pessoa>();
+	}
+	
 	public RepositorioPessoas(List<Pessoa> listaDePessoas) {
 		this.listaDePessoas = listaDePessoas;
 	}
@@ -79,5 +83,7 @@ public class RepositorioPessoas {
 		System.out.println("Pessoa com esse ID não encontrada.");
 
 	}
+	
+	
 
 }

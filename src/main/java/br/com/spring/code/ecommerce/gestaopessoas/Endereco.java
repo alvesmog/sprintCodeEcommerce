@@ -111,4 +111,14 @@ public class Endereco {
 		this.caixaPostal = caixaPostal;
 	}
 
+	@Override
+	public String toString() {
+		return "Endereco [Id()=" + getId() + ", Logradouro()=" + getLogradouro() + ", Numero()=" + getNumero()
+				+ ", Bairro()=" + getBairro() + ", Municipio()=" + getMunicipio() + ", Estado()=" + getEstado()
+				+ ", Ref()=" + getRef() + ", Cep()=" + getCep() + ", Pais()=" + getPais()
+				+ ", CaixaPostal()=" + getCaixaPostal() + "]";
+	}
+	
+	
+
 }
