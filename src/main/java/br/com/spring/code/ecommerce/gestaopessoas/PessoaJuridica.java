@@ -1,26 +1,41 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-public class PessoaJuridica extends TipoPessoa {
+public class PessoaJuridica extends Pessoa {
 	
 	private String cnpj;
+	private String razaoSocial;	
 	
-	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
-	public PessoaJuridica(String cnpj) {
+	// [fix] Atualizados os contrutores
+	
+	public PessoaJuridica() {
+		super();		
+	}
+	public PessoaJuridica(String nome, String telefone, String email,Endereco endereco, Usuario usuario, String cnpj,String razaoSocial) {
+		super(nome, telefone, email, endereco, usuario);
  		this.cnpj = cnpj;
+ 		this.razaoSocial = razaoSocial;
  	}
 
 	public String getCnpj() {
 		return cnpj;
 	}
 	
-	// [fix] nome do método estava "setCpf()"
+	// [fix] nome do metodo estava "setCpf()"
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}	
 	
-	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
 	@Override
- 	public String toString() {
- 		return "PessoaJuridica [CNPJ = " + getCnpj() + " ]";
- 	}
+	public String toString() {
+		return "PessoaJuridica [getCnpj()=" + getCnpj() + ", getRazaoSocial()=" + getRazaoSocial() + "]";
+	}
+
 }

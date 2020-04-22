@@ -1,34 +1,102 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-public class Endereco {
+import br.com.spring.code.ecommerce.gestaopessoas.WebServiceCep;
 
+/* [UPDATE] 20/04/2020
+ * Autor: Henrique
+ * 1. REMOÇÃO DO ATRIBUTO "caixaPostal";
+ * 2. INCLUSÃO DE NOVOS CONTRUTORES COM BUSCA AUTOMATICA DO CEP VIA WEBSERVICE DOS CORREIOS;
+ * 3. INCLUSÃO DA FUNÇÃO TOSTRING();
+ * 
+ * [PENDENCIAS]
+ * 1. VALIDAÇÃO DO TAMANHO E FORMATO DO CEP
+ * 2. VALIDAÇÃO DA INEXISTÊNCIA DO CEP (OS CAMPOS RECEBEM VALOR VAZIO PARA SEREM TRATADOS)  
+ */
+
+public class Endereco {
+	
+	// [fix] Realizada remoção do atributo "caixaPostal" 
 	private Integer id;
 	private String logradouro;
 	private String numero;
 	private String bairro;
-	private String municipio;
-	private String estado;
+	private String cidade;
+	private String uf;
 	private String ref;
 	private String cep;
 	private String pais;
-	private String caixaPostal;
+	private boolean cepValido;
 
-	public Endereco() {
-		
+	public Endereco(String cep) {
+		this.cep = cep;
+		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+		if (webServiceCep.wasSuccessful()) {
+			this.logradouro = webServiceCep.getLogradouro();
+			this.bairro = webServiceCep.getBairro();
+			this.cidade = webServiceCep.getCidade();
+			this.uf = webServiceCep.getUf();
+			this.cepValido = true;
+		}else {
+			this.logradouro = ""; 
+			this.bairro = "";
+			this.cidade = "";
+			this.uf = "";
+			this.cepValido = webServiceCep.wasSuccessful();
+		}
 	}
-
-	public Endereco(Integer id, String logradouro, String numero, String bairro, String municipio, String estado, String ref,
-			String cep, String pais, String caixaPostal) {
-		this.id = id;
+	
+	public Endereco(String cep, String numero, String ref, String pais) {		
+		this.cep = cep;
+		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+		if (webServiceCep.wasSuccessful()) {
+			this.logradouro = webServiceCep.getLogradouro();
+			this.bairro = webServiceCep.getBairro();
+			this.cidade = webServiceCep.getCidade();
+			this.uf = webServiceCep.getUf();
+			this.cepValido = true;
+		}else {
+			this.logradouro = ""; 
+			this.bairro = "";
+			this.cidade = "";
+			this.uf = "";
+			this.cepValido = webServiceCep.wasSuccessful();
+		}
+		this.numero = numero;
+		this.pais = pais;
+		this.ref = ref;
+	}
+	
+	public Endereco(String logradouro, String numero, String bairro, String cidade, String uf, String ref, String cep, String pais) {
+		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.bairro = bairro;
-		this.municipio = municipio;
-		this.estado = estado;
+		this.cidade = cidade;
+		this.uf = uf;
 		this.ref = ref;
 		this.cep = cep;
 		this.pais = pais;
-		this.caixaPostal = caixaPostal;
+		this.cepValido = webServiceCep.wasSuccessful();
+	}
+	
+	//FUNÇÃO DE BUSCA POR CEP RETORNANDO OBJETO ENDERECO
+	
+	public Endereco BuscaCep(String cep) {
+		Endereco endereco = new Endereco(cep);
+		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+		if (webServiceCep.wasSuccessful()) {
+			endereco.logradouro = webServiceCep.getLogradouro();
+			endereco.bairro = webServiceCep.getBairro();
+			endereco.cidade = webServiceCep.getCidade();
+			endereco.uf = webServiceCep.getUf();	
+			endereco.cep = cep;
+			endereco.numero = "";
+			endereco.ref = "";
+			endereco.pais = "";
+		}else {
+			return null;
+		}
+		return endereco;
 	}
 
 	public Integer getId() {
@@ -63,20 +131,20 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public String getMunicipio() {
-		return municipio;
+	public String getCidade() {
+		return cidade;
 	}
 
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
 	public String getRef() {
@@ -101,23 +169,22 @@ public class Endereco {
 
 	public void setPais(String pais) {
 		this.pais = pais;
+	}	
+
+	public boolean isCepValido() {
+		return cepValido;
 	}
 
-	public String getCaixaPostal() {
-		return caixaPostal;
+	public void setCepValido(boolean cepValido) {
+		this.cepValido = cepValido;
 	}
 
-	public void setCaixaPostal(String caixaPostal) {
-		this.caixaPostal = caixaPostal;
+	@Override
+	public String toString() {
+		return "Endereco [getId()=" + getId() + ", getLogradouro()=" + getLogradouro() + ", getNumero()=" + getNumero()
+				+ ", getBairro()=" + getBairro() + ", getCidade()=" + getCidade() + ", getUf()=" + getUf()
+				+ ", getRef()=" + getRef() + ", getCep()=" + getCep() + ", getPais()=" + getPais() + ", isCepValido()="
+				+ isCepValido() + "]";
 	}
 	
-	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
-	@Override
- 	public String toString() {
- 		return "Endereco [Id()=" + getId() + ", Logradouro()=" + getLogradouro() + ", Numero()=" + getNumero()
- 			+ ", Bairro()=" + getBairro() + ", Municipio()=" + getMunicipio() + ", Estado()=" + getEstado()
- 			+ ", Ref()=" + getRef() + ", Cep()=" + getCep() + ", Pais()=" + getPais()
- 			+ ", CaixaPostal()=" + getCaixaPostal() + "]";
- 	}
-
 }
