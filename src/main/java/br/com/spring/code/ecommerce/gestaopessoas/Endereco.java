@@ -35,7 +35,7 @@ public class Endereco {
 			this.bairro = webServiceCep.getBairro();
 			this.cidade = webServiceCep.getCidade();
 			this.uf = webServiceCep.getUf();
-			this.cepValido = true;
+			this.cepValido = webServiceCep.wasSuccessful();
 		}else {
 			this.logradouro = ""; 
 			this.bairro = "";
@@ -53,7 +53,7 @@ public class Endereco {
 			this.bairro = webServiceCep.getBairro();
 			this.cidade = webServiceCep.getCidade();
 			this.uf = webServiceCep.getUf();
-			this.cepValido = true;
+			this.cepValido = webServiceCep.wasSuccessful();
 		}else {
 			this.logradouro = ""; 
 			this.bairro = "";

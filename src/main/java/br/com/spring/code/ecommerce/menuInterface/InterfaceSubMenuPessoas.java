@@ -60,7 +60,7 @@ public class InterfaceSubMenuPessoas {
 					pessoa.setEmail(leia.next());
 					do {
 						System.out.println("CEP: ");
-						Endereco endereco = new Endereco(leia.next());
+						Endereco endereco = new Endereco(leia.next());						
 						cepValido = endereco.isCepValido();
 						if (endereco.isCepValido() == true) {
 							System.out.println("CEP: " + endereco.getCep());
