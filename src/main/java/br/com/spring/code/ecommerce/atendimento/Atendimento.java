@@ -1,7 +1,8 @@
 package br.com.spring.code.ecommerce.atendimento;
 
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
-import br.com.spring.code.ecommerce.vendas.Vendas;
+
+import br.com.spring.code.ecommerce.venda.Venda;
 
 public class Atendimento {
 	private Integer id;
@@ -10,22 +11,18 @@ public class Atendimento {
 	private Integer idVenda;
 	private String email;
 	private TipoAtendimento tipoAtendimento;
-	private StatusAtendimento status;
-	
+	private StatusAtendimento status;	
 
-	public Atendimento(Integer id, Pessoa pessoa, String assunto, Vendas venda, 
-			TipoAtendimento tipoAtendimento) {
-	
+	public Atendimento(Integer id, Pessoa pessoa, String assunto, Venda venda, 
+			TipoAtendimento tipoAtendimento) {	
 		this.id = id;
 		this.idUsuario = pessoa.getId();;
 		this.assunto = assunto;
-	//	this.idVenda = venda.;
+		this.idVenda = venda.getId();
 		this.email = pessoa.getEmail();
 		this.tipoAtendimento = tipoAtendimento;
 		this.status = StatusAtendimento.novo;
 	}
-	
-
 	
 	public Integer getId() {
 		return id;
@@ -69,7 +66,4 @@ public class Atendimento {
 	public void setStatus(StatusAtendimento status) {
 		this.status = status;
 	}
-	
-	
-
 }

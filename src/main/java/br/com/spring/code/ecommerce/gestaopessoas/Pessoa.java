@@ -1,36 +1,45 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-public class Pessoa {
+/* [UPDATE] 20/04/2020
+ * Autor: Henrique
+ * 1. POPULAÇÃO DO ATRIBUTO ID AO INSERIR O OBJETO NO REPOSITORIO
+ * 2. POPULACÃO INICIAL DOS ATRIBUTOS CONFIABILIDADE E PONTOS COM 0 INICIALMENTE.
+ * 3. VALIDAÇÃO DA FORMATAÇÃO DE ENDEREÇAMENTO DE E-MAIL (PODE SER CRIADA UMA FUNÇÃO NO REPOSITORIO ANTES DE SER INSERIDO OU NO MENU)
+ * 4. CLASSE PESSOA DEFINIDA COMO ABSTRATA, FORÇANDO O INSTANCIAMENTO DE PESSOA COMO NOVA PESSOAFISICA OU PESSOAJURIDICA
+ */
 
+public abstract class Pessoa{
+	
 	private Integer id;
 	private String nome;
 	private String telefone;
 	private String email;
 	private double confiabilidade;
-	private TipoPessoa pessoa;
 	private Usuario usuario;
 	private Endereco endereco;
 	private Integer pontos;
-
+	
 	public Pessoa() {
-
+		this.confiabilidade = 0;
+		this.pontos = 0;
 	}
 
-	public Pessoa(String nome, String telefone, String email, double confiabilidade, TipoPessoa pessoa,
-			Endereco endereco, Usuario usuario, Integer pontos) {
-		this.id = usuario.getId();
+	public Pessoa(String nome, String telefone, String email,Endereco endereco, Usuario usuario) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
-		this.confiabilidade = confiabilidade;
-		this.pessoa = pessoa;
+		this.confiabilidade = 0;
 		this.endereco = endereco;
 		this.usuario = usuario;
-		this.pontos = pontos;
+		this.pontos = 0;
 	}
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -65,14 +74,6 @@ public class Pessoa {
 		this.confiabilidade = confiabilidade;
 	}
 
-	public TipoPessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(TipoPessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -96,13 +97,12 @@ public class Pessoa {
 	public void setPontos(Integer pontos) {
 		this.pontos = pontos;
 	}
-	
-	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
+
 	@Override
- 	public String toString() {
- 		return "Pessoa [ID=" + getId() + ", Nome=" + getNome() + ", Telefone()=" + getTelefone()
- 			+ ", Email()=" + getEmail() + ", Confiabilidade()=" + getConfiabilidade() + ", Pessoa()="
- 			+ getPessoa() + ", Endereco()=" + getEndereco() + ", Usuario()=" + getUsuario() 
- 			+ ", Pontos()=" + getPontos() + "]";
- 	}
+	public String toString() {
+		return "TipoPessoa [getId()=" + getId() + ", getNome()=" + getNome() + ", getTelefone()=" + getTelefone()
+				+ ", getEmail()=" + getEmail() + ", getConfiabilidade()=" + getConfiabilidade() + ", getEndereco()="
+				+ getEndereco() + ", getUsuario()=" + getUsuario() + ", getPontos()=" + getPontos() + "]";
+	}	
+
 }

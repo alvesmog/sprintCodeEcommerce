@@ -5,11 +5,12 @@ import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaFisica;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaJuridica;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
-import br.com.spring.code.ecommerce.gestaopessoas.TipoPessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
 import br.com.spring.code.ecommerce.gestaoprodutos.Categoria;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
 
 /**
  * Juntando as peças: Prof. Lenin
@@ -21,30 +22,32 @@ public class App
     {
         //Populando dados no sistema
     	RepositorioPessoas pessoas = new RepositorioPessoas();
-    	RepositorioProdutos produtos = new RepositorioProdutos();
+    	RepositorioProdutos produtos = new RepositorioProdutos();	
+
+    	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | INICIO
+    	Endereco end1 = new Endereco("50010-060", "105", "Banco Itaú", "Brasil");
+    	Endereco end2 = new Endereco("50010-230", "1212", "", "Brasil");
+    	Endereco end3 = new Endereco("50020-040", "06", "Nenhum", "Brasil");
+    	Endereco end4 = new Endereco("50010-080", "591", "", "Brasil");
+    	Endereco end5 = new Endereco("50050-130", "13", "Casa de festas", "Brasil");
+    	Endereco end6 = new Endereco("50050-070", "198", "", "Brasil");    			
+    	Endereco end7 = new Endereco("50040-220", "01", "Proximo ao colégio e curso XYZ", "Brasil");
     	
-    	PessoaFisica pf = new PessoaFisica("12547896532");
-    	
-    	PessoaJuridica pj = new PessoaJuridica("63285674514054");
-    	
-    	Endereco end1 = new Endereco(1, "Rua A", "125", "Cordeiro", "A", "A", "A", "Z", "A", "D");
-    	Endereco end2 = new Endereco(2, "Rua 12", "25", "Torre", "A", "C", "A", "Z", "A", "D");
-    	
-    	Usuario user1 = new Usuario(1, "user1", "1234");
-     	Usuario user2 = new Usuario(2, "user2", "4321");
-     	Usuario user3 = new Usuario(3, "user3", "4321");
-     	Usuario user4 = new Usuario(4, "user4", "4321");
-     	Usuario user5 = new Usuario(5, "user5", "4321");
-     	Usuario user6 = new Usuario(6, "user6", "4321");
-     	Usuario user7 = new Usuario(7, "user7", "4321");    	
-    	
-    	Pessoa pessoa1 = new Pessoa("Joao Augusto", "986413568", "joao@teste.com", 1.5, ((TipoPessoa) pf), end1, user1, 2);
-    	Pessoa pessoa2 = new Pessoa("Arthur Leandro", "96853214", "arthur@teste.com", 2.5, ((TipoPessoa) pj), end2, user2, 3);
-    	Pessoa pessoa3 = new Pessoa("Carlina Perez", "5842027547", "candryushchenko0@a8.net", 1.0, ((TipoPessoa) pj), end2, user3, 3);
-    	Pessoa pessoa4 = new Pessoa("Nichole Lima", "8232611354", "nbrigdale1@vkontakte.ru", 4.2, ((TipoPessoa) pf), end2, user4, 3);
-    	Pessoa pessoa5 = new Pessoa("Matthew Souza", "2555717124", "mtitmuss2@multiply.com", 3.5, ((TipoPessoa) pj), end2, user5, 3);
-    	Pessoa pessoa6 = new Pessoa("Corrinne Silva", "7047897644", "cchallens3@1688.com", 1.8, ((TipoPessoa) pj), end2, user6, 3);
-    	Pessoa pessoa7 = new Pessoa("Sherilyn Perez", "9461924214", "sivanyutin4@sakura.ne.jp", 2.2, ((TipoPessoa) pj), end2, user7, 3);
+    	Usuario user1 = new Usuario("user1", "1234");
+     	Usuario user2 = new Usuario("user2", "2020");
+     	Usuario user3 = new Usuario("user3", "1111");
+     	Usuario user4 = new Usuario("user4", "0250");
+     	Usuario user5 = new Usuario("user5", "8569");
+     	Usuario user6 = new Usuario("user6", "4575");
+     	Usuario user7 = new Usuario("user7", "7586");     	
+     	  			     			
+    	Pessoa pessoa1 = new PessoaFisica("Joao Augusto", "986413568", "joao@teste.com", end1, user1, "12547896532");
+    	Pessoa pessoa2 = new PessoaFisica("Arthur Leandro", "96853214", "arthur@teste.com", end2, user2, "56325524525");
+    	Pessoa pessoa3 = new PessoaFisica("Carlina Perez", "5842027547", "candryushchenko0@a8.net", end3, user3, "95820524201");
+    	Pessoa pessoa4 = new PessoaFisica("Nichole Lima", "8232611354", "nbrigdale1@vkontakte.ru", end4, user4, "89220562050");
+    	Pessoa pessoa5 = new PessoaFisica("Matthew Souza", "2555717124", "mtitmuss2@multiply.com", end5, user5, "05203658487");
+    	Pessoa pessoa6 = new PessoaJuridica("Corrinne Silva", "7047897644", "cchallens3@1688.com", end6, user6, "63285674514054", "Informatica SA");
+    	Pessoa pessoa7 = new PessoaJuridica("Sherilyn Perez", "9461924214", "sivanyutin4@sakura.ne.jp", end7, user7, "12050220020001", "Cosmeticos Ltda");
     	
     	pessoas.adicionar(pessoa1);
     	pessoas.adicionar(pessoa2);
@@ -53,6 +56,7 @@ public class App
     	pessoas.adicionar(pessoa5);
     	pessoas.adicionar(pessoa6);
     	pessoas.adicionar(pessoa7);
+    	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | FINAL
     	
     	Categoria cat1 = new Categoria(1, "Roupa");
     	Categoria cat2 = new Categoria(2, "Móveis");
@@ -86,7 +90,7 @@ public class App
       		switch (rep) {
  			case 1 :  int op;
  					  do {
- 						op= menuPessoas.mostrarSubMenuPessoas();
+ 						op = menuPessoas.mostrarSubMenuPessoas();
  						menuPessoas.ingressaOpcoesGestaoPessoa(op, pessoas);
  					  } while (op != 0);
  				break; 
@@ -107,5 +111,7 @@ public class App
  		}
 
       	} while (rep != 0);
+ 	
     }
+ 
 }

@@ -21,7 +21,7 @@ package br.com.spring.code.ecommerce.menuInterface;
 
   		System.out.println("\n");
 
-  		System.out.print("Acesar ao Sistema. Digite a sua opção: ");
+  		System.out.print("Acessar o Sistema. Digite a sua opção: ");
 
   		opcao = leia.nextInt();
 
