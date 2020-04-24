@@ -6,9 +6,9 @@ import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 
 public interface RepositorioAnuncio {
 
-	void CriarAnuncio(Anuncio anuncio);
+	void criarAnuncio(Anuncio anuncio);
 	List<Anuncio> listarAnuncios();
 	Anuncio procurarAnuncioPorId(Integer id);
-	Anuncio procurarAnuncioPorVendedor(Pessoa pessoa);
-	void removerAnuncio(Integer Id);	
+	List<Anuncio> procurarAnuncioPorVendedor(Pessoa pessoa);
+	boolean removerAnuncio(Integer Id);	
 }
