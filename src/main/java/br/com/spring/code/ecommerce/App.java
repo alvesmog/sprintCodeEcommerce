@@ -6,7 +6,7 @@ import br.com.spring.code.ecommerce.gestaopessoas.PessoaFisica;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaJuridica;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
-import br.com.spring.code.ecommerce.gestaopessoas.WebServiceCep;
+import br.com.spring.code.ecommerce.gestaopessoas.ValidadorCpfCnpj;
 import br.com.spring.code.ecommerce.gestaoprodutos.Categoria;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
@@ -33,8 +33,7 @@ public class App {
     	Endereco end5 = new Endereco("50050-130", "13", "Casa de festas", "Brasil");
     	Endereco end6 = new Endereco("50050-070", "198", "", "Brasil");    			
     	Endereco end7 = new Endereco("50040-220", "01", "Proximo ao colégio e curso XYZ", "Brasil");
-    	
-    	
+    	    	    	
 		Usuario user1 = new Usuario("user1", "1234");
 		Usuario user2 = new Usuario("user2", "2020");
 		Usuario user3 = new Usuario("user3", "1111");
@@ -43,19 +42,19 @@ public class App {
 		Usuario user6 = new Usuario("user6", "4575");
 		Usuario user7 = new Usuario("user7", "7586");
 
-		Pessoa pessoa1 = new PessoaFisica("Joao Augusto", "986413568", "joao@teste.com", end1, user1, "12547896532");
-		Pessoa pessoa2 = new PessoaFisica("Arthur Leandro", "96853214", "arthur@teste.com", end2, user2, "56325524525");
+		Pessoa pessoa1 = new PessoaFisica("Joao Augusto", "986413568", "joao@teste.com", end1, user1, "18874319002");
+		Pessoa pessoa2 = new PessoaFisica("Arthur Leandro", "96853214", "arthur@teste.com", end2, user2, "69257102084");
 		Pessoa pessoa3 = new PessoaFisica("Carlina Perez", "5842027547", "candryushchenko0@a8.net", end3, user3,
-				"95820524201");
+				"69476312033");
 		Pessoa pessoa4 = new PessoaFisica("Nichole Lima", "8232611354", "nbrigdale1@vkontakte.ru", end4, user4,
-				"89220562050");
+				"08407446092");
 		Pessoa pessoa5 = new PessoaFisica("Matthew Souza", "2555717124", "mtitmuss2@multiply.com", end5, user5,
-				"05203658487");
+				"27535452000");
 		Pessoa pessoa6 = new PessoaJuridica("Corrinne Silva", "7047897644", "cchallens3@1688.com", end6, user6,
-				"63285674514054", "Informatica SA");
+				"60054463000168", "Informatica SA");
 		Pessoa pessoa7 = new PessoaJuridica("Sherilyn Perez", "9461924214", "sivanyutin4@sakura.ne.jp", end7, user7,
-				"12050220020001", "Cosmeticos Ltda");
-
+				"37500473000168", "Cosmeticos Ltda");
+		
 		pessoas.adicionar(pessoa1);
 		pessoas.adicionar(pessoa2);
 		pessoas.adicionar(pessoa3);
