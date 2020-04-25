@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioAtendimento {
-	//Atributos
+	static //Atributos
 	List<Atendimento> listaAtendimentos;
 
 	public RepositorioAtendimento() {
@@ -12,7 +12,7 @@ public class RepositorioAtendimento {
 		listaAtendimentos = new ArrayList<Atendimento>();
 	}
 	
-	public Atendimento buscarPorId(Integer idProcurado) {
+	public static Atendimento buscarPorId(Integer idProcurado) {
 		if (idProcurado != 0 && !listaAtendimentos.isEmpty()) {
 			//Cria um objeto vazio
 			Atendimento procurado = null;
@@ -28,6 +28,7 @@ public class RepositorioAtendimento {
 			}
 			return procurado;
 		}
+		System.out.println("Atendimento não encontrado");
 		return null;	
 	}
 	
