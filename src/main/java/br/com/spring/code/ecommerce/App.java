@@ -109,7 +109,7 @@ public class App
     	
     	Anuncio anuncio1 = new Anuncio(pessoa1, produto1, new Date(), duvida1, 95.99, geo1);
     	Anuncio anuncio2 = new Anuncio(pessoa1, produto2, new Date(), duvida2, 54.75, geo2);
-    	Anuncio anuncio3 = new Anuncio(pessoa1, produto1, new Date(), duvida3, 39.90, geo3);
+    	Anuncio anuncio3 = new Anuncio(pessoa1, produto3, new Date(), duvida3, 39.90, geo3);
     	
     	anuncios.criarAnuncio(anuncio1);
     	anuncios.criarAnuncio(anuncio2);
@@ -140,13 +140,13 @@ public class App
  			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 
  				break;
  			case 4 : //chamar a classe/metodo do submenu de gestão de vendas 
- 				int opcao;
- 				
+ 				Integer opcao;
  				do {
 					opcao = menuVendas.mostrarSubMenuVendas();
 					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
-					menuVendas.ingressaOpcoesParaVenda(opcao, (ListaRepositorioAnuncio) anuncios, pessoas, vendas, financas);
-				} while (opcao != 0);
+					opcao = menuVendas.ingressaOpcoesParaVenda(opcao, (ListaRepositorioAnuncio) anuncios, pessoas, vendas, financas);
+					
+ 				} while (!opcao.equals(0));
  				
  				break;
  			case 5 : //chamar a classe/metodo do submenu de gestão de atendimento 
