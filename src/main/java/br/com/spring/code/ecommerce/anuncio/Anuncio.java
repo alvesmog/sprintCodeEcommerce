@@ -4,6 +4,7 @@ import java.util.Date;
 
 import br.com.spring.code.ecommerce.duvidas.Duvidas;
 import br.com.spring.code.ecommerce.geolocalizacao.GeoLocalizacao;
+import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 
@@ -98,8 +99,19 @@ public class Anuncio {
 		this.localizacao = localizacao;
 	}
 	
-	public void calcularTaxaEnvio(GeoLocalizacao localização) {
-		
+	private void setTaxaEnvio(double taxa) {
+		this.taxaEnvio = taxa;
+	}
+	
+	/**
+	 * @see Financeiro.java's {@code valorDoFrete()}
+	 * @param localizacaoProduto
+	 * @param enderecoComprador
+	 * @return
+	 */
+	public double calcularTaxaEnvio(GeoLocalizacao localizacaoProduto, Endereco enderecoComprador) {
+		this.setTaxaEnvio(-1);
+		return -1;
 	}
 	
 	// [fix] source: Aula 18/04,  9-12h: https://github.com/alvesmog/sprintCodeEcommerce/commit/b069ece92b571a188769eec075737660e8a44743
@@ -109,4 +121,17 @@ public class Anuncio {
  				+ getProduto() + ", DataAnuncio=" + getDataAnuncio() + ", Duvidas=" + getDuvidas()
  				+ ", Valor=" + getValor() + ", Localizacao=" + getLocalizacao() + "]";
  	}
+	
+	public String mostrarInfo() {
+		return "Anuncio: [ "
+				+ "ID = " + getIdAnuncio()
+				+ ", Produto = " + getProduto().getTitulo()
+				+ ", Produto ID = " + getProduto().getId()
+				+ ", Vendedor ID = " + getPessoa().getId()
+				+ ", Nome do Vendedor = " + getPessoa().getNome()
+				+ ", Valor = " + getValor()
+				+ ", Data do Anuncio = " + getDataAnuncio()
+				+ ", Localizacao = " + getLocalizacao()
+				+ " ]";
+	}
 }
