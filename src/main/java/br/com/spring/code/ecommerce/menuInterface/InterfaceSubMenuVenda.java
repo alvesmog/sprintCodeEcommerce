@@ -1,7 +1,9 @@
 package br.com.spring.code.ecommerce.menuInterface;
 
+import java.util.List;
 import java.util.Scanner;
 
+import br.com.spring.code.ecommerce.anuncio.Anuncio;
 import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
 import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
 import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
@@ -12,11 +14,10 @@ public class InterfaceSubMenuVenda {
 
 	public int mostrarSubMenuVendas() {
 		Scanner leia = new Scanner(System.in);
-		int opcao = 0;
 
-		System.out.println("##################################################");
-		System.out.println("******** e-COMMERCE DE PRODUTOS PARA BEBÊ ********\n\n");
-		System.out.println(" ===== VENDAS:  \"VAMOS FECHAR UMA COMPRA?\" =====\n\n");	
+		System.out.println("\n\n##################################################");
+		System.out.println("******** e-COMMERCE DE PRODUTOS PARA BEBÊ ********\n");
+		System.out.println(" ===== VENDAS:  \"VAMOS FECHAR UMA COMPRA?\" =====\n");	
 		System.out.println("1. OLHAR O CATÁLOGO ...");
 		System.out.println("2. PROCURAR ANÚNCIOS POR ID");
 		System.out.println("3. PROCURAR ANÚNCIOS POR VENDEDOR");
@@ -29,44 +30,105 @@ public class InterfaceSubMenuVenda {
 		System.out.println("0. ENCERRAR SISTEMA");
 
 		System.out.println("\n Digita uma opção: ");
-		opcao = leia.nextInt();
 
+		Integer opcao = leia.nextInt();
 		return opcao;
 	}
 
-	public void ingressaOpcoesParaVenda(int op, 
+	public Integer ingressaOpcoesParaVenda(
+			Integer opcaoEscolhida, 
 			ListaRepositorioAnuncio repositorioAnuncio, 
 			RepositorioPessoas repositorioPessoas,
 			RepositorioVendas repositorioVendas, 
 			RepositorioFinanceiro repositorioFinanceiro
 			) throws InterruptedException {
 
-		Scanner leia = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 
-		switch (op) {
+		switch (opcaoEscolhida) {
+
 		case 1 : // 1. OLHAR O CATÁLOGO
 			System.out.println("\n===== Exibindo catálogo ... =====\n");
 			repositorioAnuncio.exibirTodosAnunciosNoConsole();
-
 			break;
 
 		case 2 : // 2. PROCURAR ANÚNCIOS POR ID
 			System.out.println("\n===== Procurar anúncio POR ID ... =====\n");
 			System.out.println("Digite o ID do ANÚNCIO específico, caso você saiba: ");
-			int idAnuncio = leia.nextInt();
-			repositorioAnuncio.procurarAnuncioPorId(idAnuncio);
+			int idAnuncio = input.nextInt();
+
+			Anuncio procurado = repositorioAnuncio.procurarAnuncioPorId(idAnuncio);
+			if (procurado != null) {
+
+				System.out.println(
+						"\n > Com o ID `" + idAnuncio
+						+ "` foi encontrado este resultado: \n\n"
+						+ procurado.mostrarInfo()
+						);
+
+			} else {
+				System.out.println(
+						"\n > Com o ID `" + idAnuncio
+						+ "` NÃO foi encontrado nenhum anúncio válido. "
+						+ "Desculpe. :( \n"
+						);
+
+			}
 			break;
 
 		case 3 : // 3. PROCURAR ANÚNCIOS POR VENDEDOR
+			
+			System.out.println("\n===== Procurar anúncio POR ID do VENDEDOR ... =====\n");
+			System.out.println("Digite o ID do VENDEDOR específico, caso você saiba: ");
+			int idVendedor = input.nextInt();
 
+			List<Anuncio> procuradoPorVendedor = repositorioAnuncio.procurarAnuncioPorVendedor(idVendedor);
+			if (procuradoPorVendedor.size() > 0) {
+
+				System.out.println(
+						"\n > Com o ID `" + idVendedor
+						+ "` foi encontrado este resultado: \n\n");
+				for (Anuncio anuncio : procuradoPorVendedor) {
+					System.out.println(anuncio.mostrarInfo());
+				}
+
+			} else {
+				System.out.println(
+						"\n > Com um ID de Vendedor `" + idVendedor
+						+ "` NÃO foi encontrado nenhum anúncio válido. "
+						+ "Desculpe. :( \n"
+						);
+			}
 			break;
 
 		case 4 : // 4. PROCURAR ANÚNCIOS POR PRODUTO
+			System.out.println("\n===== Procurar anúncio POR ID do PRODUTO ... =====\n");
+			System.out.println("Digite o ID do PRODUTO específico, caso você saiba: ");
+			int idProduto = input.nextInt();
 
+			List<Anuncio> produtosPorProduto = repositorioAnuncio.procurarAnuncioPorProduto(idProduto);
+			if (produtosPorProduto.size() > 0) {
+
+				System.out.println(
+						"\n > Com o ID `" + idProduto
+						+ "` foi encontrado este resultado: \n\n");
+				for (Anuncio anuncio : produtosPorProduto) {
+					System.out.println(anuncio.mostrarInfo());
+				}
+
+			} else {
+				System.out.println(
+						"\n > Com um ID de Produto `" + idProduto
+						+ "` NÃO foi encontrado nenhum anúncio válido. "
+						+ "Desculpe. :( \n"
+						);
+			}
 			break;
+			
 		case 5 : // 5. COLOCAR NO CARRINHO DE COMPRAS
 
 			break;
+			
 		case 6 : // 6. RETIRAR DO CARRINHO DE COMPRAS
 
 			break;
@@ -80,6 +142,7 @@ public class InterfaceSubMenuVenda {
 			break;
 
 		case 9: System.out.println("\n===== Voltando ao Menu Principal ... =====\n");					
+		opcaoEscolhida = 0;
 		Thread.sleep(2000);
 		break;
 
@@ -87,11 +150,11 @@ public class InterfaceSubMenuVenda {
 		Thread.sleep(2000);
 		System.exit(0);
 		break;
-		
+
 		default: System.out.println("Opção inválida! \nTente outra ...");;
 		}
-		
-		leia.close();
+
+		return opcaoEscolhida;
 	}
 }
 
