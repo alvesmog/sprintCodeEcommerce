@@ -2,13 +2,13 @@ package br.com.spring.code.ecommerce.anuncio;
 
 import java.util.List;
 
-import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
-
 public interface RepositorioAnuncio {
 
 	void criarAnuncio(Anuncio anuncio);
 	List<Anuncio> listarAnuncios();
+	void exibirTodosAnunciosNoConsole();
 	Anuncio procurarAnuncioPorId(Integer id);
-	List<Anuncio> procurarAnuncioPorVendedor(Pessoa pessoa);
+	List<Anuncio> procurarAnuncioPorVendedor(Integer pessoaId);
+	List<Anuncio> procurarAnuncioPorProduto(Integer produtoId);
 	boolean removerAnuncio(Integer Id);	
 }
