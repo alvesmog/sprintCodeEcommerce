@@ -46,11 +46,12 @@ public class InterfaceSubMenuVenda {
 			ListaRepositorioAnuncio repositorioAnuncio, 
 			RepositorioPessoas repositorioPessoas,
 			RepositorioVendas repositorioVendas, 
-			RepositorioFinanceiro repositorioFinanceiro
+			RepositorioFinanceiro repositorioFinanceiro,
+			List<Anuncio> carrinhoDeCompras
 			) throws InterruptedException {
 
 		Scanner input = new Scanner(System.in);
-		List<Anuncio> carrinhoDeCompras = new ArrayList<>();
+		Integer inputCarrinho = null;
 
 		switch (opcaoEscolhida) {
 
@@ -135,29 +136,34 @@ public class InterfaceSubMenuVenda {
 			
 		case 5 : // 5. COLOCAR NO CARRINHO DE COMPRAS
 			System.out.println("\n===== Seu carrinho de compras =====\n");
-			Integer inputCarrinho = null;
+			inputCarrinho = null;
 			do {
 				
-				System.out.println("Já sabe qual anúncio tem interesse?\n"
-						+ " > Se SIM, digite o ID do Anúncio;\n"
+				System.out.println("\nJá sabe qual anúncio tem interesse?\n"
+						+ " > Se SIM, digite o ID do Anúncio;\n\n"
 						+ " > Se NÃO souber, digite '0' para voltar ao menu anterior e procure o ID do Anuncio "
-						+ "\nPOR VENDEDOR (Opção 3) ou POR PRODUTO (Opção 4).\n"
-						+ " > Digite 999 quando terminar de adicionar os anúncios ao carrinho.");
+						+ "\nPOR VENDEDOR (Opção 3) ou POR PRODUTO (Opção 4).\n\n"
+						+ " > Digite 999 quando terminar de adicionar os produtos ao carrinho.");
 				inputCarrinho = input.nextInt();
 				if (inputCarrinho.equals(0) || inputCarrinho.equals(999)) break;
 				
 				Anuncio anuncioEscolhido = repositorioAnuncio.procurarAnuncioPorId(inputCarrinho);
+				if (anuncioEscolhido == null) {
+					System.out.println(String.format("\nNão foi possível encontrar nenhum Anuncio com ID: `%d`.\nTente novamente ...", inputCarrinho));
+					break;
+				}
 				carrinhoDeCompras.add(anuncioEscolhido);
 				
 				Financeiro calculosDoCarrinho = new Financeiro(1, null, new Date(new java.util.Date().getTime()));
 				calculosDoCarrinho.calcularValor(carrinhoDeCompras);
-				System.out.println("\n > Valor do(s) produto(s): 		R$ " + calculosDoCarrinho.getValorTotal());
+				
+				System.out.println("\n > Valor do(s) produto(s):	R$ " + calculosDoCarrinho.getValorTotal());
 				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.PAC);
 				System.out.println("- - - - -\n > Frete (PAC):			R$ " + calculosDoCarrinho.getValorFrete());
 				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX);
-				System.out.println(" > Frete (SEDEX): 			R$ " + calculosDoCarrinho.getValorFrete());
+				System.out.println(" > Frete (SEDEX):		R$ " + calculosDoCarrinho.getValorFrete());
 				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX_10);
-				System.out.println(" > Frete (SEDEX10): 		R$ " + calculosDoCarrinho.getValorFrete());
+				System.out.println(" > Frete (SEDEX10):		R$ " + calculosDoCarrinho.getValorFrete());
 				
 			
 			} while (!inputCarrinho.equals(999));
@@ -165,11 +171,39 @@ public class InterfaceSubMenuVenda {
 			break;
 			
 		case 6 : // 6. RETIRAR DO CARRINHO DE COMPRAS
-
+			
+			System.out.println("\n===== Seu carrinho de compras =====\n");
+			inputCarrinho = null;
+			do {
+				if (carrinhoDeCompras.size() == 0) {
+					System.out.println("Ops... seu carrinho está vazio.");
+					break;
+				}
+				
+				System.out.println("\n - - Conteúdo do Carrinho de Compras - - \n"); 
+				
+				this.mostrarCarrinho(carrinhoDeCompras);
+				
+				System.out.println("\n > Para remover algum item, digite o ID do Anúncio correspondente;\n\n"
+						+ " > Para voltar ao menu anterior, digite: 0");
+				inputCarrinho = input.nextInt();
+				if (inputCarrinho.equals(0)) break;
+				
+				Anuncio procuradoParaRemover = this.procurarNoCarrinhoPorId(carrinhoDeCompras, inputCarrinho);
+				if (procuradoParaRemover == null) {
+					System.out.println(String.format("\nNão foi possível encontrar nenhum Anuncio com ID no carrinho: `%d`.\nTente novamente ...", inputCarrinho));
+				};
+				carrinhoDeCompras.remove(procuradoParaRemover);
+				
+			} while(!inputCarrinho.equals(0));
+			
 			break;
 
 		case 7: // 7. REALIZAR CHECKOUT
-
+			System.out.println("\n===== Checkout =====\n");
+			
+			
+			
 			break;
 
 		case 8: // 8. VISUALIZAR PEDIDOS
@@ -192,5 +226,23 @@ public class InterfaceSubMenuVenda {
 		return opcaoEscolhida;
 	}
 	
+	private Anuncio procurarNoCarrinhoPorId(List<Anuncio> carrinho, Integer id) {
+		if (id == null) return null;
+		Anuncio procurado = null;
+		
+		for (Anuncio anuncio : carrinho) {
+			if (id.equals(anuncio.getIdAnuncio())) {
+				return anuncio;
+			}
+		}
+		return procurado;
+	}
+	
+	private void mostrarCarrinho(List<Anuncio> carrinho) {
+		for (int i = 0; i < carrinho.size(); i++) {
+			int index = i + 1; 
+			System.out.println(index + ") " + carrinho.get(i).mostrarInfo());
+		}
+	}
 }
 
