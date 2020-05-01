@@ -1,6 +1,8 @@
 package br.com.spring.code.ecommerce;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.spring.code.ecommerce.anuncio.Anuncio;
 import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
@@ -115,6 +117,8 @@ public class App
     	anuncios.criarAnuncio(anuncio2);
     	anuncios.criarAnuncio(anuncio3);
     	
+    	List<Anuncio> carrinhoDeCompras = new ArrayList<>();
+    	
         // [fix] source: Aula 18/04,  9-12h: https://github.com/alvesmog/sprintCodeEcommerce/commit/b069ece92b571a188769eec075737660e8a44743
     	InterfaceDoApp menuGeral = new InterfaceDoApp();
     	
@@ -141,10 +145,11 @@ public class App
  				break;
  			case 4 : //chamar a classe/metodo do submenu de gestão de vendas 
  				Integer opcao;
+ 			
  				do {
 					opcao = menuVendas.mostrarSubMenuVendas();
 					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
-					opcao = menuVendas.ingressaOpcoesParaVenda(opcao, (ListaRepositorioAnuncio) anuncios, pessoas, vendas, financas);
+					opcao = menuVendas.ingressaOpcoesParaVenda(opcao, (ListaRepositorioAnuncio) anuncios, pessoas, vendas, financas, carrinhoDeCompras);
 					
  				} while (!opcao.equals(0));
  				
