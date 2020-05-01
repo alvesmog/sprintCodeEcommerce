@@ -11,6 +11,7 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuProdutos;
 
 /**
  * Juntando as peças: Prof. Lenin
@@ -69,13 +70,14 @@ public class App
     	Produto produto4 = new Produto(4, "Prateleira com Varão Branca", "madeira MDF com varão é a escolha ideal para acomodar caixas e enfeites", "./images/prateleira.png", pessoa4);
     	Produto produto5 = new Produto(5, "Kit Mijões Bebê 3 Peças Vaquinha", "Confeccionadas em 85% algodão e 15% pode variar entre outras fibras", "./images/kitmijoes.png", pessoa5);
     	Produto produto6 = new Produto(6, "Kit Berço Trança Poá Azul Bebê", "com peças confeccionadas em tecidos 100% algodão e essenciais para o enxoval do bebê", "./images/kitberco.png", pessoa6);
-    	
+    	Produto produto7 = new Produto(7,"Camisa","Camisa Azul","Foto",pessoa7);
     	produtos.adicionar(produto1);
     	produtos.adicionar(produto2);
     	produtos.adicionar(produto3);
     	produtos.adicionar(produto4);
     	produtos.adicionar(produto5);
     	produtos.adicionar(produto6);
+    	produtos.adicionar(produto7);
     	
         // [fix] source: Aula 18/04,  9-12h: https://github.com/alvesmog/sprintCodeEcommerce/commit/b069ece92b571a188769eec075737660e8a44743
     	InterfaceDoApp menuGeral = new InterfaceDoApp();
@@ -83,6 +85,7 @@ public class App
         //Faz a chamada do menu de opções
 
       	InterfaceSubMenuPessoas menuPessoas = new InterfaceSubMenuPessoas();
+      	InterfaceSubMenuProdutos menuProdutos = new InterfaceSubMenuProdutos();
      	int rep;
      	do {
      		rep = menuGeral.mostrarMenuOpcoes();
@@ -95,6 +98,10 @@ public class App
  					  } while (op != 0);
  				break; 
  			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 
+ 				 do {
+						op = menuProdutos.mostrarSubMenuProdutos();
+						menuProdutos.ingressaOpcoesGestaoProdutos(op, produtos);
+					  } while (op != 0);
  				break;
  			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 
  				break;

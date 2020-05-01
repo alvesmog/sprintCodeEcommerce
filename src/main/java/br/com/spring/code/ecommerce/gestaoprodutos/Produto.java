@@ -138,8 +138,11 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto [titulo=" + titulo 
-				+ ", Categoria=" + categoria.toString() 
+		return "Produto [Id=" + id 
+				+ ", Titulo=" + titulo 
+				+ ", Descricao=" + descricao
+				+ ", Quantidade=" + quantidade
+//				+ ", Categoria=" + categoria.toString() 
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}
