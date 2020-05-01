@@ -22,7 +22,7 @@ public class Financeiro {
 			Integer id,
 			Pagamento formaPagamento, 
 			Date data) {
-		
+
 		this.id = id;
 		this.formaPagamento = formaPagamento;
 		this.dataDoPagamento = data;
@@ -53,11 +53,11 @@ public class Financeiro {
 	public double getValorTotal() {
 		return valorTotal;
 	}
-	
+
 	public double getValorFrete() {
 		return valorFrete;
 	}
-	
+
 	public Date getDataDoPagamento() {
 		return dataDoPagamento;
 	}
@@ -119,23 +119,21 @@ public class Financeiro {
 
 		if (quantidade > 1) {	// Para quantidades de anuncios > 1
 
-			for (int i = 0; i < listaDeAnuncios.size(); i++) {
+			switch (tipoDeEnvio) {
+			case PAC:
+				valorDoEnvio = 10 + (5 * quantidade);
+				break;
 
-				switch (tipoDeEnvio) {
-				case PAC:
-					valorDoEnvio = 10 + (5 * quantidade);
-					break;
+			case SEDEX:
+				valorDoEnvio = 15.0 + (6 * quantidade);;
+				break;
 
-				case SEDEX:
-					valorDoEnvio = 15.0 + (6 * quantidade);;
-					break;
+			case SEDEX_10:
+				valorDoEnvio = 20.0 + (7 * quantidade);;
+				break;
 
-				case SEDEX_10:
-					valorDoEnvio = 20.0 + (7 * quantidade);;
-					break;
-				}
 			}
-			
+
 		} else {	// Para venda de apenas anuncio.
 
 			// Simplificado: valor fixo a depender do tipo de envio
@@ -157,7 +155,7 @@ public class Financeiro {
 		// Guarda o valor do envio no atributo `valorFrete`:
 		this.setValorFrete(valorDoEnvio);
 	}
-	
+
 	/**
 	 * {@code toString()} customizado para objeto `Financeiro`
 	 */
@@ -179,7 +177,7 @@ public class Financeiro {
 		builder.append(" ]");
 		return builder.toString();
 	}
-	
-	
+
+
 
 }
