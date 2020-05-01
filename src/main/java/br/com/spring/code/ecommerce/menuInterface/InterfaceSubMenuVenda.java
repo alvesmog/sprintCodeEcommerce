@@ -1,14 +1,20 @@
 package br.com.spring.code.ecommerce.menuInterface;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import br.com.spring.code.ecommerce.anuncio.Anuncio;
 import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
 import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
+import br.com.spring.code.ecommerce.financeiro.Financeiro;
+import br.com.spring.code.ecommerce.financeiro.Pagamento;
 import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.venda.RepositorioVendas;
+import br.com.spring.code.ecommerce.venda.TipoDeEnvio;
+import br.com.spring.code.ecommerce.venda.Venda;
 
 public class InterfaceSubMenuVenda {
 
@@ -44,6 +50,7 @@ public class InterfaceSubMenuVenda {
 			) throws InterruptedException {
 
 		Scanner input = new Scanner(System.in);
+		List<Anuncio> carrinhoDeCompras = new ArrayList<>();
 
 		switch (opcaoEscolhida) {
 
@@ -123,10 +130,38 @@ public class InterfaceSubMenuVenda {
 						+ "Desculpe. :( \n"
 						);
 			}
+			
 			break;
 			
 		case 5 : // 5. COLOCAR NO CARRINHO DE COMPRAS
-
+			System.out.println("\n===== Seu carrinho de compras =====\n");
+			Integer inputCarrinho = null;
+			do {
+				
+				System.out.println("Já sabe qual anúncio tem interesse?\n"
+						+ " > Se SIM, digite o ID do Anúncio;\n"
+						+ " > Se NÃO souber, digite '0' para voltar ao menu anterior e procure o ID do Anuncio "
+						+ "\nPOR VENDEDOR (Opção 3) ou POR PRODUTO (Opção 4).\n"
+						+ " > Digite 999 quando terminar de adicionar os anúncios ao carrinho.");
+				inputCarrinho = input.nextInt();
+				if (inputCarrinho.equals(0) || inputCarrinho.equals(999)) break;
+				
+				Anuncio anuncioEscolhido = repositorioAnuncio.procurarAnuncioPorId(inputCarrinho);
+				carrinhoDeCompras.add(anuncioEscolhido);
+				
+				Financeiro calculosDoCarrinho = new Financeiro(1, null, new Date(new java.util.Date().getTime()));
+				calculosDoCarrinho.calcularValor(carrinhoDeCompras);
+				System.out.println("\n > Valor do(s) produto(s): 		R$ " + calculosDoCarrinho.getValorTotal());
+				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.PAC);
+				System.out.println("- - - - -\n > Frete (PAC):			R$ " + calculosDoCarrinho.getValorFrete());
+				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX);
+				System.out.println(" > Frete (SEDEX): 			R$ " + calculosDoCarrinho.getValorFrete());
+				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX_10);
+				System.out.println(" > Frete (SEDEX10): 		R$ " + calculosDoCarrinho.getValorFrete());
+				
+			
+			} while (!inputCarrinho.equals(999));
+			
 			break;
 			
 		case 6 : // 6. RETIRAR DO CARRINHO DE COMPRAS
@@ -156,5 +191,6 @@ public class InterfaceSubMenuVenda {
 
 		return opcaoEscolhida;
 	}
+	
 }
 
