@@ -20,8 +20,11 @@ public class Duvidas {
 		this.idProduto = produto.getId();
 		this.id = id;
 
+
 	}
 
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -69,6 +72,12 @@ public class Duvidas {
 		}
 		return interacaoMatch;
 
+	}
+	
+	public void mostrarTodasInterações() {
+		for (Interacoes interacao : interacoes) {
+			System.out.println(interacao);
+		}
 	}
 
 	public void desativarTodasInteracoes() {
