@@ -8,6 +8,7 @@ import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
 import br.com.spring.code.ecommerce.gestaoprodutos.Categoria;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
+import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
@@ -24,6 +25,7 @@ public class App
         //Populando dados no sistema
     	RepositorioPessoas pessoas = new RepositorioPessoas();
     	RepositorioProdutos produtos = new RepositorioProdutos();	
+    	RepositorioCategorias categorias = new RepositorioCategorias();
 
     	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | INICIO
     	Endereco end1 = new Endereco("50010-060", "105", "Banco Itaú", "Brasil");
@@ -63,14 +65,22 @@ public class App
     	Categoria cat2 = new Categoria(2, "Móveis");
     	Categoria cat3 = new Categoria(3, "Decoração");
     	Categoria cat4 = new Categoria(4, "Peças de Cama");
+    	Categoria cat5 = new Categoria(5, "Brinquedo");
     	
-    	Produto produto1 = new Produto(1, "Ninho para Bebê Redutor", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/ninho.png", pessoa1);
-    	Produto produto2 = new Produto(2, "Berço Minicama 3 em 1 Dom", "Com design moderno, a cabeceira e a peseira se destacam com originais linhas curvilíneas", "./images/berço.png", pessoa2);
-    	Produto produto3 = new Produto(3, "Andador Goal Walker 4 em 1 Cosco", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/andardor.png", pessoa3);
-    	Produto produto4 = new Produto(4, "Prateleira com Varão Branca", "madeira MDF com varão é a escolha ideal para acomodar caixas e enfeites", "./images/prateleira.png", pessoa4);
-    	Produto produto5 = new Produto(5, "Kit Mijões Bebê 3 Peças Vaquinha", "Confeccionadas em 85% algodão e 15% pode variar entre outras fibras", "./images/kitmijoes.png", pessoa5);
-    	Produto produto6 = new Produto(6, "Kit Berço Trança Poá Azul Bebê", "com peças confeccionadas em tecidos 100% algodão e essenciais para o enxoval do bebê", "./images/kitberco.png", pessoa6);
-    	Produto produto7 = new Produto(7,"Camisa","Camisa Azul","Foto",pessoa7);
+    	categorias.adicionarCategoria(cat1);
+    	categorias.adicionarCategoria(cat2);
+    	categorias.adicionarCategoria(cat3);
+    	categorias.adicionarCategoria(cat4);
+    	categorias.adicionarCategoria(cat5);
+    	
+    	Produto produto1 = new Produto(1, "Ninho para Bebê Redutor", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/ninho.png", pessoa1,cat1);
+    	Produto produto2 = new Produto(2, "Berço Minicama 3 em 1 Dom", "Com design moderno, a cabeceira e a peseira se destacam com originais linhas curvilíneas", "./images/berço.png", pessoa2,cat2);
+    	Produto produto3 = new Produto(3, "Andador Goal Walker 4 em 1 Cosco", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/andardor.png", pessoa3, cat2);
+    	Produto produto4 = new Produto(4, "Prateleira com Varão Branca", "madeira MDF com varão é a escolha ideal para acomodar caixas e enfeites", "./images/prateleira.png", pessoa4, cat3);
+    	Produto produto5 = new Produto(5, "Kit Mijões Bebê 3 Peças Vaquinha", "Confeccionadas em 85% algodão e 15% pode variar entre outras fibras", "./images/kitmijoes.png", pessoa5,cat4);
+    	Produto produto6 = new Produto(6, "Kit Berço Trança Poá Azul Bebê", "com peças confeccionadas em tecidos 100% algodão e essenciais para o enxoval do bebê", "./images/kitberco.png", pessoa6,cat5);
+    	Produto produto7 = new Produto(7,"Camisa","Camisa Azul","Foto",pessoa7,cat5);
+    	
     	produtos.adicionar(produto1);
     	produtos.adicionar(produto2);
     	produtos.adicionar(produto3);
@@ -100,7 +110,7 @@ public class App
  			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 
  				 do {
 						op = menuProdutos.mostrarSubMenuProdutos();
-						menuProdutos.ingressaOpcoesGestaoProdutos(op, produtos);
+						menuProdutos.ingressaOpcoesGestaoProdutos(op, produtos, categorias);
 					  } while (op != 0);
  				break;
  			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 

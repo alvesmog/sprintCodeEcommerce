@@ -19,12 +19,13 @@ public class Produto {
 	
 	// Construtor
 	
-	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa) {
+	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa, Categoria categoria) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.foto = foto;
 		this.idPessoa = pessoa.getId();
+		this.categoria = categoria;
 	}
 	
 	// Construtor vazio
@@ -142,7 +143,7 @@ public class Produto {
 				+ ", Titulo=" + titulo 
 				+ ", Descricao=" + descricao
 				+ ", Quantidade=" + quantidade
-//				+ ", Categoria=" + categoria.toString() 
+				+ ", Categoria=" + categoria.getNome()
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}

@@ -64,9 +64,11 @@ public class RepositorioProdutos {
 		listaDeProdutos.add(produto);
 		for (int i = 0; i < listaDeProdutos.size(); i++) {
 			if (listaDeProdutos.get(i) == produto) {
-				listaDeProdutos.get(i).setId(i + 1);
+				listaDeProdutos.get(i).setId(i +1);
+
 			}
 		}
+
 	}
 
 	// Remover elementos pelo ID:
