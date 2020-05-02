@@ -154,17 +154,7 @@ public class InterfaceSubMenuVenda {
 				}
 				carrinhoDeCompras.add(anuncioEscolhido);
 				
-				Financeiro calculosDoCarrinho = new Financeiro(1, null, new Date(new java.util.Date().getTime()));
-				calculosDoCarrinho.calcularValor(carrinhoDeCompras);
-				
-				System.out.println("\n > Valor do(s) produto(s):	R$ " + calculosDoCarrinho.getValorTotal());
-				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.PAC);
-				System.out.println("- - - - -\n > Frete (PAC):			R$ " + calculosDoCarrinho.getValorFrete());
-				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX);
-				System.out.println(" > Frete (SEDEX):		R$ " + calculosDoCarrinho.getValorFrete());
-				calculosDoCarrinho.calcularValorDoFrete(carrinhoDeCompras, TipoDeEnvio.SEDEX_10);
-				System.out.println(" > Frete (SEDEX10):		R$ " + calculosDoCarrinho.getValorFrete());
-				
+				this.mostrarCalculosPreliminares(carrinhoDeCompras);
 			
 			} while (!inputCarrinho.equals(999));
 			
@@ -200,8 +190,17 @@ public class InterfaceSubMenuVenda {
 			break;
 
 		case 7: // 7. REALIZAR CHECKOUT
-			System.out.println("\n===== Checkout =====\n");
+			System.out.println("\n===== Checkout =====\n"
+					+ "\n > Seu carrinho de compras atual: ");
+			this.mostrarCarrinho(carrinhoDeCompras);
 			
+			System.out.println("\n Deseja proceder o checkout? "
+					+ "\n > Digite qualquer número para continuar;"
+					+ "\n > Ou, digite '0' para voltar ao menu. ");
+			inputCarrinho = input.nextInt();
+			if (inputCarrinho.equals(0)) break;
+			
+			Financeiro calculosCheckout = this.mostrarCalculosPreliminares(carrinhoDeCompras);
 			
 			
 			break;
@@ -243,6 +242,21 @@ public class InterfaceSubMenuVenda {
 			int index = i + 1; 
 			System.out.println(index + ") " + carrinho.get(i).mostrarInfo());
 		}
+	}
+	
+	private Financeiro mostrarCalculosPreliminares(List<Anuncio> carrinho) {
+		Financeiro calculosDoCarrinho = new Financeiro(1, null, new Date(new java.util.Date().getTime()));
+		calculosDoCarrinho.calcularValor(carrinho);
+		
+		System.out.println("\n > Valor do(s) produto(s):	R$ " + calculosDoCarrinho.getValorTotal());
+		calculosDoCarrinho.calcularValorDoFrete(carrinho, TipoDeEnvio.PAC);
+		System.out.println("- - - - -\n > Frete (PAC):			R$ " + calculosDoCarrinho.getValorFrete());
+		calculosDoCarrinho.calcularValorDoFrete(carrinho, TipoDeEnvio.SEDEX);
+		System.out.println(" > Frete (SEDEX):		R$ " + calculosDoCarrinho.getValorFrete());
+		calculosDoCarrinho.calcularValorDoFrete(carrinho, TipoDeEnvio.SEDEX_10);
+		System.out.println(" > Frete (SEDEX10):		R$ " + calculosDoCarrinho.getValorFrete());
+		
+		return calculosDoCarrinho;
 	}
 }
 
