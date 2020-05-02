@@ -1,5 +1,7 @@
 package br.com.spring.code.ecommerce;
 
+import java.awt.Menu;
+
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaFisica;
@@ -107,11 +109,13 @@ public class App
  						menuPessoas.ingressaOpcoesGestaoPessoa(op, pessoas);
  					  } while (op != 0);
  				break; 
- 			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 
- 				 do {
-						op = menuProdutos.mostrarSubMenuProdutos();
-						menuProdutos.ingressaOpcoesGestaoProdutos(op, produtos, categorias);
-					  } while (op != 0);
+ 			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 		
+ 				Integer opcao;
+  				do {
+ 					opcao = menuProdutos.mostrarSubMenuProdutos();
+ 					opcao = menuProdutos.ingressaOpcoesGestaoProdutos(opcao, produtos, categorias);
+  				} while (!opcao.equals(0));
+  				
  				break;
  			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 
  				break;

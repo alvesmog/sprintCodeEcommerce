@@ -34,9 +34,8 @@ public class InterfaceSubMenuProdutos {
 	 * NOVO PRODUTO
 	 */
 
-	public void ingressaOpcoesGestaoProdutos(int op, RepositorioProdutos produtos, RepositorioCategorias categorias)
+	public Integer ingressaOpcoesGestaoProdutos(Integer op, RepositorioProdutos produtos, RepositorioCategorias categorias)
 			throws InterruptedException {
-		InterfaceDoApp princ = null;
 		int cond = 0;
 		Scanner leia = new Scanner(System.in);
 		switch (op) {
@@ -151,6 +150,7 @@ public class InterfaceSubMenuProdutos {
 		case 6:
 			System.out.println("Voltando ao Menu Principal");
 			Thread.sleep(2000);
+			op = 0;
 			break;
 		case 0:
 			System.out.println("Saindo do Sistema...");
@@ -161,7 +161,7 @@ public class InterfaceSubMenuProdutos {
 			System.out.println("Opção Inválida!");
 			;
 		}
-
+		return op;
 	}
 
 }
