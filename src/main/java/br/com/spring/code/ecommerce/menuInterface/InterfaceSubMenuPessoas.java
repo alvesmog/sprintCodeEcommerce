@@ -137,7 +137,9 @@ public class InterfaceSubMenuPessoas {
  					int idRemove = leia.nextInt();
  					pessoas.remover(idRemove);
  			break;
- 			case 5: System.out.println("Voltando ao Menu Principal");					      
+ 			case 5: System.out.println("Voltando ao Menu Principal");
+ 					InterfaceDoApp menuGeral = new InterfaceDoApp();
+ 					menuGeral.mostrarMenuOpcoes();
  					Thread.sleep(2000);
  			break;
  			case 0: System.out.println("Saindo do Sistema...");
