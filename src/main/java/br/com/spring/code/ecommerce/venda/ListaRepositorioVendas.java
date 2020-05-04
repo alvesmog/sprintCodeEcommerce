@@ -81,4 +81,19 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 		return null;
 	}
 
+	/**
+	 * @descrição Percorre a lista em busca de vendas cujo o id seja correspondente
+	 * 
+	 */
+	
+public Venda procurarVendaPorId(Integer id) {
+		
+		for (Venda venda : repositorioDeVendas) {
+			if (venda.getFinanceiro().getId().equals(id)) {
+				return venda;
+			}
+		}
+		
+		return null;
+	}
 }
