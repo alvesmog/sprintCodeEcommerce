@@ -9,14 +9,14 @@ Esse é o repositório do projeto final do Módulo 9 da Pós-graduação 'Softwa
 ## Usando o "E-commerce"
 
 O projeto tem por objetivo criar a estrutura de uma `loja virtual`. Inicialmente é proposta a divisão nos seguintes módulos:
-1. [Gestão de pessoas](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/gestaopessoas);
-2. [Gestão de produtos](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/gestaoprodutos);
-3. [Financeiro](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/financeiro);
-4. [Anúncios](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/anuncio); 
-5. [Venda](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/venda);
-6. [Atendimento](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/atendimento);
-7. [Dúvidas](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/duvidas);
-8. [Geolocalização](https://github.com/alvesmog/sprintCodeEcommerce/tree/pagamento-e-venda/src/main/java/br/com/spring/code/ecommerce/geolocalizacao)
+1. [Gestão de pessoas](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/gestaopessoas);
+2. [Gestão de produtos](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/gestaoprodutos);
+3. [Financeiro](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/financeiro);
+4. [Anúncios](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/anuncio); 
+5. [Venda](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/venda);
+6. [Atendimento](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/atendimento);
+7. [Dúvidas](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/duvidas);
+8. [Geolocalização](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/geolocalizacao)
 
 ## Contribuindo com <Projeto Final - Módulo 9>
 <!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file---> 
