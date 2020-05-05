@@ -44,12 +44,12 @@ public class ControladorSessao {
 		 * @param novaSessao
 		 * @return {@code true} se adicionar corretamente a fila, {@code false} caso contrário.
 		 */
-		public boolean autorizar(Sessao novaSessao) {
+		private boolean autorizar(Sessao novaSessao) {
 			if (novaSessao == null) return false;
 			return this.tokenFila.add(novaSessao);
 		}
 		
-		public boolean removerAutorizacao(Sessao sessaoExistente) {
+		private boolean removerAutorizacao(Sessao sessaoExistente) {
 			if (sessaoExistente == null) return false;
 			return this.tokenFila.remove(sessaoExistente);
 		}
