@@ -23,6 +23,7 @@ import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuVenda;
+import br.com.spring.code.ecommerce.sessao.ControladorSessao;
 import br.com.spring.code.ecommerce.venda.ListaRepositorioVendas;
 import br.com.spring.code.ecommerce.venda.RepositorioVendas;
 
@@ -40,6 +41,7 @@ public class App
     	RepositorioAnuncio anuncios = new ListaRepositorioAnuncio();
     	RepositorioVendas vendas = new ListaRepositorioVendas();
     	RepositorioFinanceiro financas = new ListaRepositorioFinanceiro();
+    	ControladorSessao controladorSessao = new ControladorSessao();
 
     	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | INICIO
     	Endereco end1 = new Endereco("50010-060", "105", "Banco Itaú", "Brasil");
@@ -149,7 +151,14 @@ public class App
  				do {
 					opcao = menuVendas.mostrarSubMenuVendas();
 					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
-					opcao = menuVendas.ingressaOpcoesParaVenda(opcao, (ListaRepositorioAnuncio) anuncios, pessoas, vendas, financas, carrinhoDeCompras);
+					opcao = menuVendas.ingressaOpcoesParaVenda(
+							opcao, 
+							(ListaRepositorioAnuncio) anuncios,
+							pessoas, 
+							vendas, 
+							financas, 
+							carrinhoDeCompras, 
+							controladorSessao);
 					
  				} while (!opcao.equals(0));
  				
