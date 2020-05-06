@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
+
 /**
  * 
  * @author thiagojacinto, carloshenrique e wilson;
@@ -79,6 +81,30 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * @descrição Percorre a lista em busca da composição de uma lista de vendas (histórico de vendas) de um mesmo usuário (comprador)
+	 * @param comprador
+	 * @return {@code List<Venda>}, como um histórico de vendas de um comprador.
+	 */
+	public List<Venda> procurarVendasPorComprador(Pessoa comprador) {//, RepositorioPessoas repositorioPessoas) {
+		
+		if (comprador == null) return null;
+//		if (repositorioPessoas.verificarPermissao(
+//				comprador.getUsuario().getLogin(), 
+//				comprador.getUsuario().getSenha()
+//			) != 2) return null;
+		
+		List<Venda> listaDeVendas = new ArrayList<Venda>();
+		
+		for (Venda venda : listaDeVendas) {
+			if (venda.getPessoa().equals(comprador)) {
+				listaDeVendas.add(venda);
+			}
+		}
+		
+		return listaDeVendas.size() > 0 ? listaDeVendas : null;
 	}
 
 }
