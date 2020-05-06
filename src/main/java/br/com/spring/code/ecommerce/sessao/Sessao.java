@@ -28,8 +28,8 @@ public class Sessao {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Sessao [UUID = ");
 		builder.append(getIdUnico());
-		builder.append(", Usuario = ");
-		builder.append(getUsuario());
+		builder.append(", ID_Usuario = ");
+		builder.append(getUsuario().getId());
 		builder.append("]");
 		return builder.toString();
 	}
