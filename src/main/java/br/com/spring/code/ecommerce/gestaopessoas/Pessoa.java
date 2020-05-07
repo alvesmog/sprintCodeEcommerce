@@ -92,9 +92,9 @@ public abstract class Pessoa {
 
 	@Override
 	public String toString() {
-		return "TipoPessoa [getId()=" + getId() + ", getNome()=" + getNome() + ", getTelefone()=" + getTelefone()
-				+ ", getEmail()=" + getEmail() + ", getConfiabilidade()=" + getConfiabilidade() + ", getEndereco()="
-				+ getEndereco() + ", getUsuario()=" + getUsuario() + ", getPontos()=" + getPontos() + "]";
+		return "[Id:" + getId() + ", Nome:" + getNome() + ", Telefone:" + getTelefone()
+				+ ", Email:" + getEmail() + ", Confiabilidade:" + getConfiabilidade() + ", Endereco:"
+				+ getEndereco() + ", Usuario:" + getUsuario() + ", Pontos:" + getPontos() + "]";
 	}
 
 }

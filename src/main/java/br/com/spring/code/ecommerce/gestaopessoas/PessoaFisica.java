@@ -33,7 +33,7 @@ public class PessoaFisica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "PessoaFisica [Cpf()=" + getCpf() + "]";
+		return "[Cpf:" + getCpf() + "]";
 	}
 
 }
