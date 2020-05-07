@@ -15,6 +15,7 @@ public class Financeiro {
 	private double valorComissao;
 	private double valorFrete;
 	private Date dataDoPagamento;
+	private double beneficio;
 
 	// Construtor
 
@@ -61,6 +62,10 @@ public class Financeiro {
 	public Date getDataDoPagamento() {
 		return dataDoPagamento;
 	}
+	
+	public double getBeneficio() {
+		return beneficio;
+	}
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -76,6 +81,10 @@ public class Financeiro {
 
 	private void setValorFrete(double valorFrete) {
 		this.valorFrete = valorFrete;
+	}
+	
+	private void setBeneficio(double beneficio) {
+		this.beneficio = beneficio;
 	}
 
 	// MÉTODOS
@@ -95,6 +104,7 @@ public class Financeiro {
 		// Ao final da lista, seta a atributo `ValorTotal` como soma dos valores.
 		this.setValorTotal(somaDeValores);
 		this.calcularComissao(somaDeValores);
+		this.calcularBeneficio();
 	}
 
 	/**
@@ -155,6 +165,11 @@ public class Financeiro {
 		// Guarda o valor do envio no atributo `valorFrete`:
 		this.setValorFrete(valorDoEnvio);
 	}
+	
+	private void calcularBeneficio() {
+		double beneficioCalculado = Math.floor(Math.random()*150);
+		this.setBeneficio(beneficioCalculado);
+	}
 
 	/**
 	 * {@code toString()} customizado para objeto `Financeiro`
@@ -163,17 +178,19 @@ public class Financeiro {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Financeiro [ id = ");
-		builder.append(id);
+		builder.append(this.getId());
 		builder.append(", formaPagamento = ");
-		builder.append(formaPagamento);
+		builder.append(this.getFormaPagamento());
 		builder.append(", valorTotal = ");
-		builder.append(valorTotal);
+		builder.append(this.getValorTotal());
 		builder.append(", valorComissao = ");
-		builder.append(valorComissao);
+		builder.append(this.getValorComissao());
 		builder.append(", valorFrete = ");
-		builder.append(valorFrete);
+		builder.append(this.getValorFrete());
 		builder.append(", dataDoPagamento = ");
-		builder.append(dataDoPagamento);
+		builder.append(this.getDataDoPagamento());
+		builder.append(", beneficioGerado = ");
+		builder.append(this.getBeneficio());
 		builder.append(" ]");
 		return builder.toString();
 	}
