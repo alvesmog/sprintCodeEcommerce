@@ -47,7 +47,7 @@ public class InterfaceSubMenuVenda {
 
 	public Integer ingressaOpcoesParaVenda(
 			Integer opcaoEscolhida, 
-			ListaRepositorioAnuncio repositorioAnuncio, 
+			RepositorioAnuncio repositorioAnuncio, 
 			RepositorioPessoas repositorioPessoas,
 			RepositorioVendas repositorioVendas, 
 			RepositorioFinanceiro repositorioFinanceiro,
@@ -201,7 +201,7 @@ public class InterfaceSubMenuVenda {
 				System.out.println(" - - VAZIO - - ");
 				break;
 			} 
-			
+
 			this.mostrarCarrinho(carrinhoDeCompras);
 
 			System.out.println("\n Deseja proceder o checkout? "
@@ -243,13 +243,14 @@ public class InterfaceSubMenuVenda {
 			do {
 				System.out.println("\n ... Escolha o tipo de PAGAMENTO, digitando:");
 				StringBuilder opcoesDePagamento = new StringBuilder();
+				int index = 0;
 				for (int i = 0; i < Pagamento.values().length; i++) {
-					int index = i + 1;
+					index = i + 1;
 					opcoesDePagamento.append(String.format("\n > '%d' e escolher %s", index, Pagamento.values()[i]));
 				}
 				System.out.println(opcoesDePagamento);
 				inputCarrinho = input.nextInt();
-				if (inputCarrinho == null) break;
+				if (inputCarrinho < 1 || inputCarrinho > index) break;
 
 				for (Pagamento pag : Pagamento.values()) {
 					if (inputCarrinho.equals(pag.ordinal() + 1)) {
@@ -287,7 +288,7 @@ public class InterfaceSubMenuVenda {
 
 				calculosCheckout.setId(idAleatorio);
 				repositorioFinanceiro.registrarMovimentacao(calculosCheckout);
-				
+
 				Venda vendaProcessada = new Venda(
 						idAleatorio, 
 						comprador, 
@@ -314,13 +315,14 @@ public class InterfaceSubMenuVenda {
 			username = input.next();
 			System.out.println("... e em seguida a senha correspondente: ");
 			senha = input.next();
-			
-			if (!controladorSessao.isAutenticado(username) 
-					| !controladorSessao.login(username, senha, repositorioPessoas)) {
+
+			if (!controladorSessao.login(username, senha, repositorioPessoas)) {
+				if (!controladorSessao.isAutenticado(username)) {
 					System.out.println("Houve problemas na autenticação deste usuário. Tente novamente...");
 					break;
+				}
 			} 
-	
+
 			int permissao = repositorioPessoas.verificarPermissao(username, senha);
 			if (permissao == -1) {
 				System.out.println("Houve problema no registro do usuário. Procurar suporte técnico.");
@@ -338,7 +340,7 @@ public class InterfaceSubMenuVenda {
 				break;
 			}
 			this.mostrarHistoricoPedidos(listaDeVendas);
-			
+
 			break;
 
 		case 9: System.out.println("\n===== Voltando ao Menu Principal ... =====\n");					
@@ -390,7 +392,7 @@ public class InterfaceSubMenuVenda {
 
 		return calculosDoCarrinho;
 	}
-	
+
 	private void mostrarHistoricoPedidos(List<Venda> vendas) {
 		if (vendas == null) {
 			System.out.println("Não existem pedidos para serem mostrados.");
@@ -416,7 +418,7 @@ public class InterfaceSubMenuVenda {
 			str.append(", ID_Comprador = ");
 			str.append(vendas.get(i).getPessoa().getId());
 		}
-		
+
 		System.out.println(str.toString());
 	}
 }

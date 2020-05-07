@@ -153,7 +153,7 @@ public class App
 					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
 					opcao = menuVendas.ingressaOpcoesParaVenda(
 							opcao, 
-							(ListaRepositorioAnuncio) anuncios,
+							anuncios,
 							pessoas, 
 							vendas, 
 							financas, 
