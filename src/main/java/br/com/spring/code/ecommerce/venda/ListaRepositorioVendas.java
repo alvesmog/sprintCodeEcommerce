@@ -99,7 +99,7 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 
 		List<Venda> listaDeVendas = new ArrayList<Venda>();
 
-		for (Venda venda : listaDeVendas) {
+		for (Venda venda : repositorioDeVendas) {
 			if (venda.getPessoa().equals(comprador)) {
 				listaDeVendas.add(venda);
 			}
@@ -118,7 +118,7 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 
 		List<Venda> listaDeVendas = new ArrayList<Venda>();
 
-		for (Venda venda : listaDeVendas) {
+		for (Venda venda : repositorioDeVendas) {
 			for (Anuncio anuncio : venda.getAnuncio()) {
 				if (anuncio.getPessoa().equals(Vendedor)) {
 					listaDeVendas.add(venda);
