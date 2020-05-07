@@ -266,12 +266,14 @@ public class InterfaceSubMenuVenda {
 			Pessoa comprador = null;
 			do {
 				System.out.println("Ok, agora é hora de realizar o LOGIN em sua conta."
-						+ "\nPara tal, digite seu login/username: ");
+						+ "\nPara tal, digite seu login/username OU digite '0' para voltar ao menu: ");
 				String username = input.next();
+				if (username.equals("0")) break;
 				System.out.println(" ... e em seguida sua senha de acessso correspondente: ");
 				String senha = input.next();
 
-				if (controladorSessao.login(username, senha, repositorioPessoas)) {
+				if (controladorSessao.login(username, senha, repositorioPessoas) 
+						|| controladorSessao.isAutenticado(username)) {
 					System.out.println("Login realizado com sucesso.\n");
 					comprador = repositorioPessoas.estaAutenticadoRetornaPessoa(username, senha);
 					repeat = false;
@@ -332,10 +334,15 @@ public class InterfaceSubMenuVenda {
 			List<Venda> listaDeVendas = null; 
 			switch (permissao) {
 			case 1:
+				System.out.println("\n > Produtos vendidos:");
 				listaDeVendas = repositorioVendas.procurarVendasPorVendedor(pessoaProcurada);
+				this.mostrarHistoricoPedidos(listaDeVendas);
+				System.out.println("\n > Produtos comprados:");
+				listaDeVendas = repositorioVendas.procurarVendasPorComprador(pessoaProcurada);
 				break;
 
 			case 2:
+				System.out.println("\n > Produtos comprados:");
 				listaDeVendas = repositorioVendas.procurarVendasPorComprador(pessoaProcurada);
 				break;
 			}
@@ -411,15 +418,18 @@ public class InterfaceSubMenuVenda {
 			str.append(vendas.get(i).getTipoDePagamento());
 			str.append(", ID_Financeiro = ");
 			str.append(vendas.get(i).getFinanceiroID());
-			str.append(", Anuncios = [ ");
-			for (Anuncio anuncio : vendas.get(i).getAnuncio()) {
-				str.append(anuncio.mostrarInfo());
-			}
+			str.append(", Beneficio Gerado = ");
+			str.append(vendas.get(i).getFinanceiro().getBeneficio());
 			str.append(", ID_Comprador = ");
 			str.append(vendas.get(i).getPessoa().getId());
+			str.append(" e ID_Anuncios = { ");
+			for (Anuncio anuncio : vendas.get(i).getAnuncio()) {
+				str.append(anuncio.getIdAnuncio() + ", ");
+			}
+			str.append("};");
 		}
 
-		System.out.println(str.toString());
+		System.out.println("\n" + str.toString());
 	}
 }
 
