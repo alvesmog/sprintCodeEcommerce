@@ -45,7 +45,10 @@ public class PessoaJuridica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "[Cnpj:" + getCnpj() + ", RazaoSocial:" + getRazaoSocial() + "]";
+		return "[Id: " + getId() + ", Nome: " + getNome() + ", Telefone: " + getTelefone() + ", Email: " + getEmail()
+				+ ", Confiabilidade: " + getConfiabilidade() + ", Endereco: " + getEndereco() + ", Usuario: "
+				+ getUsuario() + ", Pontos: " + getPontos() + ", Cnpj: " + getCnpj() + ", RazaoSocial: " + getRazaoSocial()
+				+ "]";
 	}
 
 }

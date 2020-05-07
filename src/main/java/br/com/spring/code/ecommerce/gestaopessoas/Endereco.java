@@ -25,7 +25,6 @@ public class Endereco {
 	private String ref;
 	private String cep;
 	private String pais;
-	private boolean cepValido;
 
 	public Endereco(String cep) throws CepException {
 		JsonObject enderecoJSON = WebServiceCep.buscarCep(cep);
@@ -119,20 +118,11 @@ public class Endereco {
 		this.pais = pais;
 	}
 
-	public boolean isCepValido() {
-		return cepValido;
-	}
-
-	public void setCepValido(boolean cepValido) {
-		this.cepValido = cepValido;
-	}
-
 	@Override
 	public String toString() {
-		return "Endereco [getId()=" + getId() + ", getLogradouro()=" + getLogradouro() + ", getNumero()=" + getNumero()
-				+ ", getBairro()=" + getBairro() + ", getCidade()=" + getCidade() + ", getUf()=" + getUf()
-				+ ", getRef()=" + getRef() + ", getCep()=" + getCep() + ", getPais()=" + getPais() + ", isCepValido()="
-				+ isCepValido() + "]";
+		return "[Id: " + getId() + ", Logradouro: " + getLogradouro() + ", Numero: " + getNumero() + ", Bairro: "
+				+ getBairro() + ", Cidade: " + getCidade() + ", Uf: " + getUf() + ", Ref: " + getRef() + ", Cep: "
+				+ getCep() + ", Pais: " + getPais() + "]";
 	}
 
 }

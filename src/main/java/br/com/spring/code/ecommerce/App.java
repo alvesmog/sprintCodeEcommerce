@@ -13,8 +13,6 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
-import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
-import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuProdutos;
 
 /**
  * Juntando as peças: Prof. Lenin
