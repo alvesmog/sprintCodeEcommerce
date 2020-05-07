@@ -26,10 +26,8 @@ public class Endereco {
 	private String cep;
 	private String pais;
 	private boolean cepValido;
-	
-	
 
-	public Endereco(String cep) {
+	public Endereco(String cep) throws CepException {
 		JsonObject enderecoJSON = WebServiceCep.buscarCep(cep);
 		this.logradouro = enderecoJSON.get("logradouro").toString();
 		this.bairro = enderecoJSON.get("bairro").toString();
@@ -37,7 +35,7 @@ public class Endereco {
 		this.uf = enderecoJSON.get("uf").toString();
 	}
 
-	public Endereco(String cep, String numero, String ref, String pais) {
+	public Endereco(String cep, String numero, String ref, String pais) throws CepException {
 		JsonObject enderecoJSON = WebServiceCep.buscarCep(cep);
 		this.logradouro = enderecoJSON.get("logradouro").toString();
 		this.bairro = enderecoJSON.get("bairro").toString();

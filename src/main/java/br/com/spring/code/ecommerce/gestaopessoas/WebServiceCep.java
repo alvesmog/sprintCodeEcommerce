@@ -21,7 +21,7 @@ public final class WebServiceCep {
 			json = Json.createReader(is).readObject();
 
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new CepException(e.getMessage());
 		}
 
 		return json;
