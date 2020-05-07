@@ -11,15 +11,11 @@ public class InterfaceDoApp {
 	public static void mostrarMenuOpcoes(RepositorioPessoas pessoas, RepositorioProdutos produtos,
 			RepositorioCategorias categorias, Scanner leia) throws InterruptedException {
 
-		
-
 		/**
 		 * =================================== 
 		 * FAZ A CHAMADA DO MENU DE OPÇÕES
 		 * ===================================
 		 */
-
-		InterfaceSubMenuProdutos menuProdutos = new InterfaceSubMenuProdutos();
 
 		do {
 
@@ -37,21 +33,19 @@ public class InterfaceDoApp {
 			System.out.println("\n");
 
 			System.out.print("Acessar o Sistema. Digite a sua opção: ");
-			
+
 			int op = leia.nextInt();
 			switch (op) {
 			case 1:
 
-//				InterfaceSubMenuPessoas.mostrarSubMenuPessoas();
 				InterfaceSubMenuPessoas.ingressaOpcoesGestaoPessoa(pessoas, produtos, categorias, leia);
-
 				break;
+				
 			case 2: // chamar a classe/metodo do submenu de gestão de produtos
-				Integer opcao;
-				do {
-					opcao = menuProdutos.mostrarSubMenuProdutos();
-					opcao = menuProdutos.ingressaOpcoesGestaoProdutos(opcao, produtos, categorias);
-				} while (!opcao.equals(0));
+
+				InterfaceSubMenuProdutos.ingressaOpcoesGestaoProdutos(pessoas, produtos, categorias, leia);
+				break;
+				
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
@@ -71,6 +65,5 @@ public class InterfaceDoApp {
 		} while (leia.nextInt() != 0);
 
 	}
-
 
 }
