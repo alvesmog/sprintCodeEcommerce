@@ -109,11 +109,11 @@ public class App
     	
     	Duvidas duvida1 = new Duvidas(1, produto1);
     	Duvidas duvida2 = new Duvidas(2, produto2);
-    	Duvidas duvida3  = new Duvidas(3, produto3);
+    	Duvidas duvida3 = new Duvidas(3, produto3);
     	
     	Anuncio anuncio1 = new Anuncio(pessoa1, produto1, new Date(), duvida1, 95.99, geo1);
-    	Anuncio anuncio2 = new Anuncio(pessoa1, produto2, new Date(), duvida2, 54.75, geo2);
-    	Anuncio anuncio3 = new Anuncio(pessoa1, produto3, new Date(), duvida3, 39.90, geo3);
+    	Anuncio anuncio2 = new Anuncio(pessoa3, produto2, new Date(), duvida2, 54.75, geo2);
+    	Anuncio anuncio3 = new Anuncio(pessoa6, produto3, new Date(), duvida3, 39.90, geo3);
     	
     	anuncios.criarAnuncio(anuncio1);
     	anuncios.criarAnuncio(anuncio2);
