@@ -105,6 +105,8 @@ public class App
 		// Faz a chamada do menu de opções
 
 		InterfaceSubMenuPessoas menuPessoas = new InterfaceSubMenuPessoas();
+		InterfaceSubMenuProdutos menuProdutos = new InterfaceSubMenuProdutos();
+		
 		int rep;
 		do {
 			rep = menuGeral.mostrarMenuOpcoes();
