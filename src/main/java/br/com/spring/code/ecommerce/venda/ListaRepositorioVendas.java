@@ -90,7 +90,7 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 	 * 
 	 */
 	
-public Venda procurarVendaPorId(Integer id) {
+	public Venda procurarVendaPorId(Integer id) {
 		
 		for (Venda venda : repositorioDeVendas) {
 			if (venda.getFinanceiro().getId().equals(id)) {
@@ -99,11 +99,14 @@ public Venda procurarVendaPorId(Integer id) {
 		}
 		
 		return null;
+	}
 
+	/**
 	 * @descrição Percorre a lista em busca da composição de uma lista de vendas (histórico de vendas) de um mesmo usuário (comprador)
 	 * @param comprador
 	 * @return {@code List<Venda>}, como um histórico de vendas de um comprador; ou {@code null} caso não encontre nenhum registro válido.
 	 */
+	 
 	public List<Venda> procurarVendasPorComprador(Pessoa comprador) {//, RepositorioPessoas repositorioPessoas) {
 
 		if (comprador == null) return null;
