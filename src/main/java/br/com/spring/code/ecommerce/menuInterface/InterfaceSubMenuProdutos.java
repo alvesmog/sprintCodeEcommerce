@@ -153,7 +153,7 @@ public class InterfaceSubMenuProdutos {
 			case 6:
 				System.out.println("Voltando ao Menu Principal");
 				Thread.sleep(2000);
-				InterfaceDoApp.mostrarMenuOpcoes(pessoas, produtos, categorias, leia);
+//				InterfaceDoApp.mostrarMenuOpcoes(pessoas, produtos, categorias, leia);
 				break;
 			case 0:
 				System.out.println("Saindo do Sistema...");
