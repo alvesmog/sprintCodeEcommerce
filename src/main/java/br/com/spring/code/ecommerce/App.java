@@ -12,7 +12,6 @@ import br.com.spring.code.ecommerce.duvidas.Duvidas;
 import br.com.spring.code.ecommerce.financeiro.ListaRepositorioFinanceiro;
 import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
 import br.com.spring.code.ecommerce.geolocalizacao.GeoLocalizacao;
-
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaFisica;
@@ -24,9 +23,6 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
-
-import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
-import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuVenda;
 import br.com.spring.code.ecommerce.sessao.ControladorSessao;
 import br.com.spring.code.ecommerce.venda.ListaRepositorioVendas;
 import br.com.spring.code.ecommerce.venda.RepositorioVendas;
@@ -44,6 +40,12 @@ public class App {
 		RepositorioPessoas pessoas = new RepositorioPessoas();
 		RepositorioProdutos produtos = new RepositorioProdutos();
 		RepositorioCategorias categorias = new RepositorioCategorias();
+		RepositorioAnuncio anuncios = new ListaRepositorioAnuncio();
+    	RepositorioVendas vendas = new ListaRepositorioVendas();
+    	RepositorioFinanceiro financas = new ListaRepositorioFinanceiro();
+    	ControladorSessao controladorSessao = new ControladorSessao();
+    	
+    	List<Anuncio> carrinhoDeCompras = new ArrayList<>();
 
 		// [UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do
 		// pacote "gestaopessoas" | INICIO
@@ -125,7 +127,7 @@ public class App {
 		produtos.adicionar(produto6);
 		produtos.adicionar(produto7);
     
-    /**
+		/**
     	 * 	ANÚNCIO:
     	 * 
     	 *  - [] Criar anúncios: é preciso criar Datas, Geolocalização, Dúvidas
@@ -148,10 +150,11 @@ public class App {
     	anuncios.criarAnuncio(anuncio2);
     	anuncios.criarAnuncio(anuncio3);
     	
-    	List<Anuncio> carrinhoDeCompras = new ArrayList<>();
-
 		Scanner leia = new Scanner(System.in);
-		InterfaceDoApp.mostrarMenuOpcoes(pessoas, produtos, categorias, leia);
+		InterfaceDoApp.mostrarMenuOpcoes(
+				pessoas, produtos, categorias, 
+				anuncios, financas, vendas, controladorSessao, carrinhoDeCompras,
+				leia);
 		leia.close();
 	}
 }
