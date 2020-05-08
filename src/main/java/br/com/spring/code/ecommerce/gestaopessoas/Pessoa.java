@@ -1,15 +1,7 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-/* [UPDATE] 20/04/2020
- * Autor: Henrique
- * 1. POPULAÇÃO DO ATRIBUTO ID AO INSERIR O OBJETO NO REPOSITORIO
- * 2. POPULACÃO INICIAL DOS ATRIBUTOS CONFIABILIDADE E PONTOS COM 0 INICIALMENTE.
- * 3. VALIDAÇÃO DA FORMATAÇÃO DE ENDEREÇAMENTO DE E-MAIL (PODE SER CRIADA UMA FUNÇÃO NO REPOSITORIO ANTES DE SER INSERIDO OU NO MENU)
- * 4. CLASSE PESSOA DEFINIDA COMO ABSTRATA, FORÇANDO O INSTANCIAMENTO DE PESSOA COMO NOVA PESSOAFISICA OU PESSOAJURIDICA
- */
+public abstract class Pessoa {
 
-public abstract class Pessoa{
-	
 	private Integer id;
 	private String nome;
 	private String telefone;
@@ -18,13 +10,13 @@ public abstract class Pessoa{
 	private Usuario usuario;
 	private Endereco endereco;
 	private Integer pontos;
-	
+
 	public Pessoa() {
 		this.confiabilidade = 0;
 		this.pontos = 0;
 	}
 
-	public Pessoa(String nome, String telefone, String email,Endereco endereco, Usuario usuario) {
+	public Pessoa(String nome, String telefone, String email, Endereco endereco, Usuario usuario) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
@@ -37,7 +29,7 @@ public abstract class Pessoa{
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -100,9 +92,9 @@ public abstract class Pessoa{
 
 	@Override
 	public String toString() {
-		return "TipoPessoa [getId()=" + getId() + ", getNome()=" + getNome() + ", getTelefone()=" + getTelefone()
-				+ ", getEmail()=" + getEmail() + ", getConfiabilidade()=" + getConfiabilidade() + ", getEndereco()="
-				+ getEndereco() + ", getUsuario()=" + getUsuario() + ", getPontos()=" + getPontos() + "]";
-	}	
+		return "[Id:" + getId() + ", Nome:" + getNome() + ", Telefone:" + getTelefone()
+				+ ", Email:" + getEmail() + ", Confiabilidade:" + getConfiabilidade() + ", Endereco:"
+				+ getEndereco() + ", Usuario:" + getUsuario() + ", Pontos:" + getPontos() + "]";
+	}
 
 }
