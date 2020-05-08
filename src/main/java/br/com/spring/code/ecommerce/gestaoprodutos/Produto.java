@@ -136,16 +136,26 @@ public class Produto {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Produto [Id=" + id 
-				+ ", Titulo=" + titulo 
-				+ ", Descricao=" + descricao
-				+ ", Quantidade=" + quantidade
-				+ ", Categoria=" + categoria.getNome()
-				+ ", Estado=" + estado 
-				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("Produto [ ID =");
+		builder.append(getId());
+		builder.append(", Titulo =");
+		builder.append(getTitulo());
+		builder.append(", Categoria =");
+		builder.append(getCategoria());
+		builder.append(", Estado =");
+		builder.append(getEstado());
+		builder.append(", FaixaEtaria =");
+		builder.append(getFaixaEtaria());
+		builder.append(", ID Vendedor ()=");
+		builder.append(getIdPessoa());
+		builder.append("]");
+		return builder.toString();
+
 	}
-	
+
 }

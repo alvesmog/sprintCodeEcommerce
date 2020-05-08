@@ -1,6 +1,17 @@
 package br.com.spring.code.ecommerce;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
+
+import br.com.spring.code.ecommerce.anuncio.Anuncio;
+import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
+import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
+import br.com.spring.code.ecommerce.duvidas.Duvidas;
+import br.com.spring.code.ecommerce.financeiro.ListaRepositorioFinanceiro;
+import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
+import br.com.spring.code.ecommerce.geolocalizacao.GeoLocalizacao;
 
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
@@ -13,6 +24,13 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
+
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuVenda;
+import br.com.spring.code.ecommerce.sessao.ControladorSessao;
+import br.com.spring.code.ecommerce.venda.ListaRepositorioVendas;
+import br.com.spring.code.ecommerce.venda.RepositorioVendas;
+
 
 /**
  * Juntando as peças: Prof. Lenin
@@ -106,6 +124,31 @@ public class App {
 		produtos.adicionar(produto5);
 		produtos.adicionar(produto6);
 		produtos.adicionar(produto7);
+    
+    /**
+    	 * 	ANÚNCIO:
+    	 * 
+    	 *  - [] Criar anúncios: é preciso criar Datas, Geolocalização, Dúvidas
+    	 *  
+    	 */
+    	
+    	GeoLocalizacao geo1 = new GeoLocalizacao(1, produto1, -8.92, -33.89);
+    	GeoLocalizacao geo2 = new GeoLocalizacao(2, produto2, -8.92, -34.89);
+    	GeoLocalizacao geo3 = new GeoLocalizacao(3, produto3, -8.12, -34.95);
+    	
+    	Duvidas duvida1 = new Duvidas(1, produto1);
+    	Duvidas duvida2 = new Duvidas(2, produto2);
+    	Duvidas duvida3 = new Duvidas(3, produto3);
+    	
+    	Anuncio anuncio1 = new Anuncio(pessoa1, produto1, new Date(), duvida1, 95.99, geo1);
+    	Anuncio anuncio2 = new Anuncio(pessoa3, produto2, new Date(), duvida2, 54.75, geo2);
+    	Anuncio anuncio3 = new Anuncio(pessoa6, produto3, new Date(), duvida3, 39.90, geo3);
+    	
+    	anuncios.criarAnuncio(anuncio1);
+    	anuncios.criarAnuncio(anuncio2);
+    	anuncios.criarAnuncio(anuncio3);
+    	
+    	List<Anuncio> carrinhoDeCompras = new ArrayList<>();
 
 		Scanner leia = new Scanner(System.in);
 		InterfaceDoApp.mostrarMenuOpcoes(pessoas, produtos, categorias, leia);
