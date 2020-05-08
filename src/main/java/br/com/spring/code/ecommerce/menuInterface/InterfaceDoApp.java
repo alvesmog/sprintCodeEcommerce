@@ -1,25 +1,41 @@
 package br.com.spring.code.ecommerce.menuInterface;
 
+import java.util.List;
 import java.util.Scanner;
 
+import br.com.spring.code.ecommerce.anuncio.Anuncio;
+import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
+import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
+import br.com.spring.code.ecommerce.sessao.ControladorSessao;
+import br.com.spring.code.ecommerce.venda.RepositorioVendas;
 
 public class InterfaceDoApp {
 
-	public static void mostrarMenuOpcoes(RepositorioPessoas pessoas, RepositorioProdutos produtos,
-			RepositorioCategorias categorias, Scanner leia) throws InterruptedException {
+	public static void mostrarMenuOpcoes(
+			RepositorioPessoas pessoas, 
+			RepositorioProdutos produtos,
+			RepositorioCategorias categorias, 
+			
+			RepositorioAnuncio repositorioAnuncio,
+			RepositorioFinanceiro repositorioFinanceiro,
+			RepositorioVendas repositorioVendas,
+			ControladorSessao controladorSessao,
+			List<Anuncio> carrinhoDeCompras,
+			
+			Scanner leia) throws InterruptedException {
 
 		/**
 		 * =================================== 
 		 * FAZ A CHAMADA DO MENU DE OPÇÕES
 		 * ===================================
 		 */
-
+		int op;
 		do {
 
-			System.out.println("##################################################");
+			System.out.println("\n##################################################");
 			System.out.println("******** e-COMMERCE DE PRODUTOS PARA BEBÊ ********\n");
 			System.out.println(" ===== MENU DE OPÇÕES =====\n");
 			System.out.println("1. GESTÃO DE PESSOAS");
@@ -34,7 +50,7 @@ public class InterfaceDoApp {
 
 			System.out.print("Acessar o Sistema. Digite a sua opção: ");
 
-			int op = leia.nextInt();
+			op = leia.nextInt();
 			switch (op) {
 			case 1:
 
@@ -49,6 +65,7 @@ public class InterfaceDoApp {
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
+				InterfaceSubMenuVenda.ingressaOpcoesParaVenda(repositorioAnuncio, pessoas, repositorioVendas, repositorioFinanceiro, carrinhoDeCompras, controladorSessao, leia);
 				break;
 			case 5: // chamar a classe/metodo do submenu de gestão de atendimento
 				break;
@@ -62,7 +79,7 @@ public class InterfaceDoApp {
 				System.out.println("Opção Inválida");
 			}
 
-		} while (leia.nextInt() != 0);
+		} while (op != 0);
 
 	}
 
