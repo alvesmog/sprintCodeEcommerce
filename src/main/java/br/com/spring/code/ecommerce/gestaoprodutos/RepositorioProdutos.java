@@ -50,7 +50,7 @@ public class RepositorioProdutos {
 	public void exibir(Integer id) {
 		Produto produtoProcurado = procurarProduto(id);
 
-		if (produtoProcurado != null) {
+		if (produtoProcurado.getId() != null) {
 			System.out.println(produtoProcurado.toString());
 
 			return;
@@ -76,7 +76,7 @@ public class RepositorioProdutos {
 
 		Produto procurado = procurarProduto(idParaRemover);
 
-		if (procurado != null) {
+		if (procurado.getId() != null) {
 
 			listaDeProdutos.remove(procurado);
 			System.out.println("Produto removido com sucesso.");

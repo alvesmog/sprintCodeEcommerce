@@ -30,7 +30,7 @@ public class InterfaceSubMenuProdutos {
 		return opcao;
 	}
 	/*
-	 * [UPDATE] 01/05/2020 Autor: Carlos e Wilson 1. CRIANDO O MENU PARA CADASTRO DE
+	 * [UPDATE] 08/05/2020 Autor: Carlos e Wilson 1. CRIANDO O MENU PARA CADASTRO DE
 	 * NOVO PRODUTO
 	 */
 
@@ -137,10 +137,14 @@ public class InterfaceSubMenuProdutos {
 			System.out.println("Digite o ID do Produto para Atualizacao: ");
 			int idAtualizar = leia.nextInt();
 			produto = produtos.procurarProduto(idAtualizar);
-			System.out.println("Digite a quantidade do produto: ");
-			int idQnt = leia.nextInt();
-			produtos.atualizarQuantidade(produto, idQnt);
-			System.out.println("Quantidade atualizada!");
+			if (produto.getId() != null) {
+				System.out.println("Digite a quantidade do produto: ");
+				int idQnt = leia.nextInt();
+				produtos.atualizarQuantidade(produto, idQnt);
+				System.out.println("Quantidade atualizada!");
+			} else {
+				System.out.println("Produto com esse ID não encontrado.");
+			}
 			break;
 		case 5:
 			System.out.println("Digite o ID do Produto para Exclui-lo: ");

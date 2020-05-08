@@ -143,7 +143,7 @@ public class Produto {
 				+ ", Titulo=" + titulo 
 				+ ", Descricao=" + descricao
 				+ ", Quantidade=" + quantidade
-				+ ", Categoria=" + categoria.getNome()
+				+ ", Categoria=" + categoria
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}
