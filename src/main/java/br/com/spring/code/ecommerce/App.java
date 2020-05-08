@@ -105,6 +105,7 @@ public class App {
 		produtos.adicionar(produto4);
 		produtos.adicionar(produto5);
 		produtos.adicionar(produto6);
+		produtos.adicionar(produto7);
 
 		Scanner leia = new Scanner(System.in);
 		InterfaceDoApp.mostrarMenuOpcoes(pessoas, produtos, categorias, leia);
