@@ -10,7 +10,11 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Categoria;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuAnuncios;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuAtendimento;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuDuvidas;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
+import br.com.spring.code.ecommerce.venda.Venda;
 
 /**
  * Juntando as peças: Prof. Lenin
@@ -40,6 +44,7 @@ public class App
      	Usuario user5 = new Usuario("user5", "8569");
      	Usuario user6 = new Usuario("user6", "4575");
      	Usuario user7 = new Usuario("user7", "7586");     	
+     	
      	  			     			
     	Pessoa pessoa1 = new PessoaFisica("Joao Augusto", "986413568", "joao@teste.com", end1, user1, "12547896532");
     	Pessoa pessoa2 = new PessoaFisica("Arthur Leandro", "96853214", "arthur@teste.com", end2, user2, "56325524525");
@@ -49,6 +54,7 @@ public class App
     	Pessoa pessoa6 = new PessoaJuridica("Corrinne Silva", "7047897644", "cchallens3@1688.com", end6, user6, "63285674514054", "Informatica SA");
     	Pessoa pessoa7 = new PessoaJuridica("Sherilyn Perez", "9461924214", "sivanyutin4@sakura.ne.jp", end7, user7, "12050220020001", "Cosmeticos Ltda");
     	
+    	
     	pessoas.adicionar(pessoa1);
     	pessoas.adicionar(pessoa2);
     	pessoas.adicionar(pessoa3);
@@ -57,6 +63,9 @@ public class App
     	pessoas.adicionar(pessoa6);
     	pessoas.adicionar(pessoa7);
     	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | FINAL
+    	
+    	
+    
     	
     	Categoria cat1 = new Categoria(1, "Roupa");
     	Categoria cat2 = new Categoria(2, "Móveis");
@@ -96,12 +105,14 @@ public class App
  				break; 
  			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 
  				break;
- 			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 
+ 			case 3 : InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas,produtos);
  				break;
  			case 4 : //chamar a classe/metodo do submenu de gestão de vendas 
  				break;
- 			case 5 : //chamar a classe/metodo do submenu de gestão de atendimento 
+ 			case 5 : InterfaceSubMenuAtendimento.mostrarMenuAtendimento(pessoas);
  				break;
+ 			case 6 : InterfaceSubMenuDuvidas.mostrarMenuDuvidas(pessoas, produtos);
+				break;
 
   			case 0 : System.out.println("Saindo do Sistema... ");
  					Thread.sleep(3000);

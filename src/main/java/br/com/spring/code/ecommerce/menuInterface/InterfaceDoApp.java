@@ -4,7 +4,7 @@ package br.com.spring.code.ecommerce.menuInterface;
 
   public class InterfaceDoApp {
 
-  	public int mostrarMenuOpcoes() {
+  	public static int mostrarMenuOpcoes() {
  		Scanner leia = new Scanner(System.in);
  		int opcao;
 
@@ -16,6 +16,7 @@ package br.com.spring.code.ecommerce.menuInterface;
  		System.out.println("3. ANUNCIO");
  		System.out.println("4. VENDAS");
  		System.out.println("5. ATENDIMENTO");
+ 		System.out.println("6. DÚVIDAS SOBRE PRODUTOS");
  		System.out.println("0. ENCERRAR SISTEMA");
  		System.out.println("##################################################");
 

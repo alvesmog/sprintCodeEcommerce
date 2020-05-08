@@ -1,6 +1,10 @@
 package br.com.spring.code.ecommerce.atendimento;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
@@ -15,34 +19,48 @@ public class Atendimento {
 	private String email;
 	private TipoAtendimento tipoAtendimento;
 	private StatusAtendimento status;	
-	private List<MensagensAtendimento> mensagensAtendimento;
+	private ArrayList<MensagensAtendimento> mensagensAtendimento= new ArrayList();
+	
 	
 
-	public Atendimento(Integer id, Pessoa pessoa, String assunto, Venda venda, 
+	public Atendimento(Integer id, Pessoa pessoa, String assunto, int idVenda, 
 			TipoAtendimento tipoAtendimento, String mensagem) {	
 		this.id = id;
 		this.idUsuario = pessoa.getId();;
 		this.assunto = assunto;
-		this.idVenda = venda.getId();
+		this.idVenda = idVenda;
 		this.email = pessoa.getEmail();
 		this.tipoAtendimento = tipoAtendimento;
 		this.status = StatusAtendimento.novo;
 		Random random = new Random();
-		int idMensagem = random.nextInt(1000);
-		MensagensAtendimento mensagemAtendimento= new MensagensAtendimento(id, idMensagem, EmissorMensagem.cliente, mensagem);
-		mensagensAtendimento.add(mensagemAtendimento);
+		Integer idMensagem = random.nextInt(1000);
+		MensagensAtendimento mensagemObjeto = new MensagensAtendimento(id, idMensagem, EmissorMensagem.cliente, mensagem);
+		this.mensagensAtendimento.add(mensagemObjeto);
+		
+	
+		
 		
 	}
 	
+public void adicionaMensagem(MensagensAtendimento mensagem) {
+	System.out.println(mensagem);
+	mensagensAtendimento.add(mensagem);
+	
+}
+	
 		
 	public Atendimento(Integer id, Pessoa pessoa, String assunto, 
-			TipoAtendimento tipoAtendimento) {	
+			TipoAtendimento tipoAtendimento,  String mensagem) {	
 		this.id = id;
 		this.idUsuario = pessoa.getId();;
 		this.assunto = assunto;
 		this.email = pessoa.getEmail();
 		this.tipoAtendimento = tipoAtendimento;
 		this.status = StatusAtendimento.novo;
+		Random random = new Random();
+		Integer idMensagem = random.nextInt(1000);
+		MensagensAtendimento mensagemObjeto = new MensagensAtendimento(id, idMensagem, EmissorMensagem.cliente, mensagem);
+		this.mensagensAtendimento.add(mensagemObjeto);
 	}
 	
 	
@@ -75,6 +93,7 @@ public class Atendimento {
 		if(RepositorioAtendimento.buscarPorId(idAtendimento)!=null) {
 			Atendimento atendimento = RepositorioAtendimento.buscarPorId(idAtendimento);
 			atendimento.setStatus(StatusAtendimento.fechado);
+			System.out.println("O atendimento foi fechado. Esperamos ter solucionado sua questão.");
 		}else {
 			System.out.println("Atendimento não encontrado");
 		}
@@ -91,11 +110,6 @@ public class Atendimento {
 	
 	public List<MensagensAtendimento> getMensagensAtendimento() {
 		return mensagensAtendimento;
-	}
-
-
-	public void setMensagensAtendimento(List<MensagensAtendimento> mensagensAtendimento) {
-		this.mensagensAtendimento = mensagensAtendimento;
 	}
 
 
@@ -141,4 +155,13 @@ public class Atendimento {
 	public void setStatus(StatusAtendimento status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "\n [Id=" + id + ", \nAssunto=" + assunto + ", \nid Venda=" + idVenda + ", \nEmail=" + email
+				+ ", \nTipo de atendimento=" + tipoAtendimento + ", \nStatus=" + status + ", \nMensagens="
+				+ mensagensAtendimento + "]";
+	}
+	
+	
 }

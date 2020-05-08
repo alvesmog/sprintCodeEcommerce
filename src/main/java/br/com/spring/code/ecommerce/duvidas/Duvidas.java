@@ -74,6 +74,10 @@ public class Duvidas {
 
 	}
 	
+	public void inserirInteracao(Interacoes interacao) {
+		interacoes.add(interacao);
+	}
+	
 	public void mostrarTodasInterações() {
 		for (Interacoes interacao : interacoes) {
 			System.out.println(interacao);

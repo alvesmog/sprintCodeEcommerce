@@ -15,7 +15,7 @@ public class RepositorioDuvidas {
 		
 	}
 	
-	public Duvidas buscarDuvidaporId(Integer idDuvida) {
+	public static Duvidas buscarDuvidaporId(Integer idDuvida) {
 		Duvidas duvidaEncontrada=null;
 		for(Duvidas duvida: duvidas) {
 			if (duvida.getId().equals(idDuvida)) {
@@ -29,7 +29,7 @@ public class RepositorioDuvidas {
 	}
 	
 	
-	public Duvidas buscarDuvidaporIddoProduto(Integer idProduto) {
+	public Duvidas  buscarDuvidaporIddoProduto(Integer idProduto) {
 		Duvidas duvidaEncontrada=null;
 		for(Duvidas duvida: duvidas) {
 			if (duvida.getIdProduto().equals(idProduto)) {

@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioAtendimento {
-	static //Atributos
-	List<Atendimento> listaAtendimentos;
+	 //Atributos
+	public static List<Atendimento> listaAtendimentos=new ArrayList<Atendimento>();
+	
+	
+	
+	
 
-	public RepositorioAtendimento() {
-		
-		listaAtendimentos = new ArrayList<Atendimento>();
+	
+	
+	public static void mostrarAtendimento() {
+	
+		for(Atendimento atendimento: listaAtendimentos) {
+	
+			System.out.println(atendimento.getId());
+		}
 	}
 	
 	public static Atendimento buscarPorId(Integer idProcurado) {
@@ -17,7 +26,7 @@ public class RepositorioAtendimento {
 			//Cria um objeto vazio
 			Atendimento procurado = null;
 			// Percorre a lista
-			for (int i = 0; i <= listaAtendimentos.size(); i++) {
+			for (int i = 0; i < listaAtendimentos.size(); i++) {
 				
 				//Se o id procurado for igual ao da lista				
 				if (listaAtendimentos.get(i).getId().equals(idProcurado)) {
@@ -79,6 +88,17 @@ public class RepositorioAtendimento {
 		}
 		return null;	
 	}
+	
+	
+	public static void adicionar(Atendimento atendimento) {
+		
+			listaAtendimentos.add(atendimento);
+			System.out.println("Atendimento salvo com sucesso!");
+			System.out.println("Detalhes: ");
+			System.out.println(atendimento);
+	}
+	
+
 	
 
 }
