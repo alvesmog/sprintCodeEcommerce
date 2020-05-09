@@ -1,6 +1,6 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
-import br.com.spring.code.ecommerce.gestaopessoas.WebServiceCep;
+import javax.json.JsonObject;
 
 /* [UPDATE] 20/04/2020
  * Autor: Henrique
@@ -14,8 +14,8 @@ import br.com.spring.code.ecommerce.gestaopessoas.WebServiceCep;
  */
 
 public class Endereco {
-	
-	// [fix] Realizada remoção do atributo "caixaPostal" 
+
+	// [fix] Realizada remoção do atributo "caixaPostal"
 	private Integer id;
 	private String logradouro;
 	private String numero;
@@ -26,77 +26,27 @@ public class Endereco {
 	private String cep;
 	private String pais;
 	private boolean cepValido;
+	
+	
 
 	public Endereco(String cep) {
-		this.cep = cep;
-		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
-		if (webServiceCep.wasSuccessful()) {
-			this.logradouro = webServiceCep.getLogradouro();
-			this.bairro = webServiceCep.getBairro();
-			this.cidade = webServiceCep.getCidade();
-			this.uf = webServiceCep.getUf();
-			this.cepValido = webServiceCep.wasSuccessful();
-		}else {
-			this.logradouro = ""; 
-			this.bairro = "";
-			this.cidade = "";
-			this.uf = "";
-			this.cepValido = webServiceCep.wasSuccessful();
-		}
+		JsonObject enderecoJSON = WebServiceCep.buscarCep(cep);
+		this.logradouro = enderecoJSON.get("logradouro").toString();
+		this.bairro = enderecoJSON.get("bairro").toString();
+		this.cidade = enderecoJSON.get("localidade").toString();
+		this.uf = enderecoJSON.get("uf").toString();
 	}
-	
-	public Endereco(String cep, String numero, String ref, String pais) {		
-		this.cep = cep;
-		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
-		if (webServiceCep.wasSuccessful()) {
-			this.logradouro = webServiceCep.getLogradouro();
-			this.bairro = webServiceCep.getBairro();
-			this.cidade = webServiceCep.getCidade();
-			this.uf = webServiceCep.getUf();
-			this.cepValido = webServiceCep.wasSuccessful();
-		}else {
-			this.logradouro = ""; 
-			this.bairro = "";
-			this.cidade = "";
-			this.uf = "";
-			this.cepValido = webServiceCep.wasSuccessful();
-		}
+
+	public Endereco(String cep, String numero, String ref, String pais) {
+		JsonObject enderecoJSON = WebServiceCep.buscarCep(cep);
+		this.logradouro = enderecoJSON.get("logradouro").toString();
+		this.bairro = enderecoJSON.get("bairro").toString();
+		this.cidade = enderecoJSON.get("localidade").toString();
+		this.uf = enderecoJSON.get("uf").toString();
 		this.numero = numero;
-		this.pais = pais;
-		this.ref = ref;
-	}
-	
-	public Endereco(String logradouro, String numero, String bairro, String cidade, String uf, String ref, String cep, String pais) {
-		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.uf = uf;
 		this.ref = ref;
 		this.cep = cep;
 		this.pais = pais;
-		this.cepValido = webServiceCep.wasSuccessful();
-	}
-	
-	//FUNÇÃO DE BUSCA POR CEP RETORNANDO OBJETO ENDERECO
-	
-	public Endereco BuscaCep(String cep) {
-		Endereco endereco = new Endereco(cep);
-		WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
-		if (webServiceCep.wasSuccessful()) {
-			endereco.logradouro = webServiceCep.getLogradouro();
-			endereco.bairro = webServiceCep.getBairro();
-			endereco.cidade = webServiceCep.getCidade();
-			endereco.uf = webServiceCep.getUf();	
-			endereco.cep = cep;
-			endereco.numero = "";
-			endereco.ref = "";
-			endereco.pais = "";
-		}else {
-			return null;
-		}
-		return endereco;
 	}
 
 	public Integer getId() {
@@ -169,7 +119,7 @@ public class Endereco {
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}	
+	}
 
 	public boolean isCepValido() {
 		return cepValido;
@@ -186,5 +136,5 @@ public class Endereco {
 				+ ", getRef()=" + getRef() + ", getCep()=" + getCep() + ", getPais()=" + getPais() + ", isCepValido()="
 				+ isCepValido() + "]";
 	}
-	
+
 }

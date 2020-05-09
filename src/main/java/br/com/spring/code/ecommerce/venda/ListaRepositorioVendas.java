@@ -73,7 +73,7 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 	 * seja IGUAL ao valor da data de entrada.
 	 * 
 	 */
-	public Venda procurarVenda(Date dataProcurada) {
+	public Venda procurarVendaPorData(Date dataProcurada) {
 
 		for (Venda venda : repositorioDeVendas) {
 			if (venda.getFinanceiro().getDataDoPagamento().equals(dataProcurada)) {
@@ -85,6 +85,7 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 	}
 
 	/**
+
 	 * @descrição Percorre a lista em busca da composição de uma lista de vendas (histórico de vendas) de um mesmo usuário (comprador)
 	 * @param comprador
 	 * @return {@code List<Venda>}, como um histórico de vendas de um comprador; ou {@code null} caso não encontre nenhum registro válido.
@@ -128,5 +129,18 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 
 		return listaDeVendas.size() > 0 ? listaDeVendas : null;
 
+
+	 * @descrição Percorre a lista em busca de vendas cujo o id seja correspondente
+	 * 
+	 */
+	
+public Venda procurarVendaPorId(Integer id) {
+		
+		for (Venda venda : repositorioDeVendas) {
+			if (venda.getFinanceiro().getId().equals(id)) {
+				return venda;
+			}
+		}	
+		return null;
 	}
 }

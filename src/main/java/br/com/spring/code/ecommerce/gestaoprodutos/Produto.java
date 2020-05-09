@@ -19,12 +19,13 @@ public class Produto {
 	
 	// Construtor
 	
-	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa) {
+	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa, Categoria categoria) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.foto = foto;
 		this.idPessoa = pessoa.getId();
+		this.categoria = categoria;
 	}
 	
 	// Construtor vazio
@@ -138,21 +139,13 @@ public class Produto {
 	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Produto [ ID =");
-		builder.append(getId());
-		builder.append(", Titulo =");
-		builder.append(getTitulo());
-		builder.append(", Categoria =");
-		builder.append(getCategoria());
-		builder.append(", Estado =");
-		builder.append(getEstado());
-		builder.append(", FaixaEtaria =");
-		builder.append(getFaixaEtaria());
-		builder.append(", ID Vendedor ()=");
-		builder.append(getIdPessoa());
-		builder.append("]");
-		return builder.toString();
-	}
 
+		return "Produto [Id=" + id 
+				+ ", Titulo=" + titulo 
+				+ ", Descricao=" + descricao
+				+ ", Quantidade=" + quantidade
+				+ ", Categoria=" + categoria
+				+ ", Estado=" + estado 
+				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
+	}
 }
