@@ -11,14 +11,12 @@ import br.com.spring.code.ecommerce.duvidas.Duvidas;
 import br.com.spring.code.ecommerce.financeiro.ListaRepositorioFinanceiro;
 import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
 import br.com.spring.code.ecommerce.geolocalizacao.GeoLocalizacao;
-
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaFisica;
 import br.com.spring.code.ecommerce.gestaopessoas.PessoaJuridica;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
-import br.com.spring.code.ecommerce.gestaopessoas.ValidadorCpfCnpj;
 import br.com.spring.code.ecommerce.gestaoprodutos.Categoria;
 import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
@@ -102,7 +100,8 @@ public class App
 		categorias.adicionarCategoria(cat4);
 		categorias.adicionarCategoria(cat5);
 
-		Produto produto1 = new Produto(1, "Ninho para Bebê Redutor", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/ninho.png", pessoa1,cat1);    	Produto produto2 = new Produto(2, "Berço Minicama 3 em 1 Dom", "Com design moderno, a cabeceira e a peseira se destacam com originais linhas curvilíneas", "./images/berço.png", pessoa2,cat2);
+		Produto produto1 = new Produto(1, "Ninho para Bebê Redutor", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/ninho.png", pessoa1,cat1);    	
+		Produto produto2 = new Produto(2, "Berço Minicama 3 em 1 Dom", "Com design moderno, a cabeceira e a peseira se destacam com originais linhas curvilíneas", "./images/berço.png", pessoa2,cat2);
 		Produto produto3 = new Produto(3, "Andador Goal Walker 4 em 1 Cosco", "Com a suavidade do tecido 100% algodão e enchimento fofinho", "./images/andardor.png", pessoa3, cat2);
 		Produto produto4 = new Produto(4, "Prateleira com Varão Branca", "madeira MDF com varão é a escolha ideal para acomodar caixas e enfeites", "./images/prateleira.png", pessoa4, cat3);
 		Produto produto5 = new Produto(5, "Kit Mijões Bebê 3 Peças Vaquinha", "Confeccionadas em 85% algodão e 15% pode variar entre outras fibras", "./images/kitmijoes.png", pessoa5,cat4);
@@ -115,6 +114,7 @@ public class App
 		produtos.adicionar(produto4);
 		produtos.adicionar(produto5);
 		produtos.adicionar(produto6);
+		produtos.adicionar(produto7);
 
 		/**
 		 * 	ANÚNCIO:
@@ -154,7 +154,7 @@ public class App
 		int rep;
 		do {
 			rep = menuGeral.mostrarMenuOpcoes();
-
+			Integer opcao;
 			switch (rep) {
 			case 1:
 				int op;
@@ -164,18 +164,18 @@ public class App
 				} while (op != 0);
 				break;
 			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 		
-				Integer opcao;
+				
 				do {
 					opcao = menuProdutos.mostrarSubMenuProdutos();
 					opcao = menuProdutos.ingressaOpcoesGestaoProdutos(opcao, produtos, categorias);
 				} while (!opcao.equals(0));
+				break;
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
-				Integer opcao;
+				
 				do {
 					opcao = menuVendas.mostrarSubMenuVendas();
-					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
 					opcao = menuVendas.ingressaOpcoesParaVenda(
 							opcao, 
 							anuncios,
