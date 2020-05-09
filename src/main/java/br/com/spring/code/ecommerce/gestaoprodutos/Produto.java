@@ -136,9 +136,10 @@ public class Produto {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
+
 		return "Produto [Id=" + id 
 				+ ", Titulo=" + titulo 
 				+ ", Descricao=" + descricao
@@ -147,5 +148,4 @@ public class Produto {
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}
-	
 }

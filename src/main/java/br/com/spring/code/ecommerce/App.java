@@ -1,6 +1,16 @@
 package br.com.spring.code.ecommerce;
 
-import java.awt.Menu;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import br.com.spring.code.ecommerce.anuncio.Anuncio;
+import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
+import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
+import br.com.spring.code.ecommerce.duvidas.Duvidas;
+import br.com.spring.code.ecommerce.financeiro.ListaRepositorioFinanceiro;
+import br.com.spring.code.ecommerce.financeiro.RepositorioFinanceiro;
+import br.com.spring.code.ecommerce.geolocalizacao.GeoLocalizacao;
 
 import br.com.spring.code.ecommerce.gestaopessoas.Endereco;
 import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
@@ -16,6 +26,10 @@ import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuProdutos;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuVenda;
+import br.com.spring.code.ecommerce.sessao.ControladorSessao;
+import br.com.spring.code.ecommerce.venda.ListaRepositorioVendas;
+import br.com.spring.code.ecommerce.venda.RepositorioVendas;
 
 /**
  * Juntando as peças: Prof. Lenin
@@ -27,9 +41,9 @@ public class App
     public static void main( String[] args ) throws InterruptedException
     {
         //Populando dados no sistema
-    	RepositorioPessoas pessoas = new RepositorioPessoas();
-    	RepositorioProdutos produtos = new RepositorioProdutos();	
-    	RepositorioCategorias categorias = new RepositorioCategorias();
+   	RepositorioPessoas pessoas = new RepositorioPessoas();
+   	RepositorioProdutos produtos = new RepositorioProdutos();	
+    RepositorioCategorias categorias = new RepositorioCategorias();
 
     	//[UPDATE] Redefinidos os instanciamentos seguindo as mudanças na estrutura do pacote "gestaopessoas" | INICIO
 
@@ -98,6 +112,31 @@ public class App
 		produtos.adicionar(produto5);
 		produtos.adicionar(produto6);
 
+    	/**
+    	 * 	ANÚNCIO:
+    	 * 
+    	 *  - [] Criar anúncios: é preciso criar Datas, Geolocalização, Dúvidas
+    	 *  
+    	 */
+    	
+   	GeoLocalizacao geo1 = new GeoLocalizacao(1, produto1, -8.92, -33.89);
+   	GeoLocalizacao geo2 = new GeoLocalizacao(2, produto2, -8.92, -34.89);
+   	GeoLocalizacao geo3 = new GeoLocalizacao(3, produto3, -8.12, -34.95);
+    	
+   	Duvidas duvida1 = new Duvidas(1, produto1);
+   	Duvidas duvida2 = new Duvidas(2, produto2);
+   	Duvidas duvida3 = new Duvidas(3, produto3);
+    	
+   	Anuncio anuncio1 = new Anuncio(pessoa1, produto1, new Date(), duvida1, 95.99, geo1);
+   	Anuncio anuncio2 = new Anuncio(pessoa3, produto2, new Date(), duvida2, 54.75, geo2);
+   	Anuncio anuncio3 = new Anuncio(pessoa6, produto3, new Date(), duvida3, 39.90, geo3);
+    	
+   	anuncios.criarAnuncio(anuncio1);
+   	anuncios.criarAnuncio(anuncio2);
+   	anuncios.criarAnuncio(anuncio3);
+    	
+    List<Anuncio> carrinhoDeCompras = new ArrayList<>();
+
 		// [fix] source: Aula 18/04, 9-12h:
 		// https://github.com/alvesmog/sprintCodeEcommerce/commit/b069ece92b571a188769eec075737660e8a44743
 		InterfaceDoApp menuGeral = new InterfaceDoApp();
@@ -106,6 +145,7 @@ public class App
 
 		InterfaceSubMenuPessoas menuPessoas = new InterfaceSubMenuPessoas();
 		InterfaceSubMenuProdutos menuProdutos = new InterfaceSubMenuProdutos();
+    InterfaceSubMenuVenda menuVendas = new InterfaceSubMenuVenda();
 		
 		int rep;
 		do {
@@ -128,6 +168,20 @@ public class App
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
+        Integer opcao;
+ 				do {
+					opcao = menuVendas.mostrarSubMenuVendas();
+					// @TODO: Organizar a interface `RepositorioAnuncio` para não precisar do 'cast'
+					opcao = menuVendas.ingressaOpcoesParaVenda(
+							opcao, 
+							anuncios,
+							pessoas, 
+							vendas, 
+							financas, 
+							carrinhoDeCompras, 
+							controladorSessao);
+					
+ 				} while (!opcao.equals(0));
 				break;
 			case 5: // chamar a classe/metodo do submenu de gestão de atendimento
 				break;
