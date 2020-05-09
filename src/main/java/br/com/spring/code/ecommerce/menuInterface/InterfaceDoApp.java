@@ -28,28 +28,4 @@ package br.com.spring.code.ecommerce.menuInterface;
   		return opcao;
  	}
 
- //	public void acessaOsSubMenus(int opcao) throws InterruptedException {
- //		InterfaceSubMenuPessoas menuPessoas = new InterfaceSubMenuPessoas();
- //		
- //		switch (opcao) {
- //			case 1 :  int op = menuPessoas.mostrarSubMenuPessoas();
- //					menuPessoas.ingressaOpcoesGestaoPessoa(op);	
- //				break; 
- //			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 
- //				break;
- //			case 3 : //chamar a classe/metodo do submenu de gestão de anuncio 
- //				break;
- //			case 4 : //chamar a classe/metodo do submenu de gestão de vendas 
- //				break;
- //			case 5 : //chamar a classe/metodo do submenu de gestão de atendimento 
- //				break;
- //				
- //			case 0 : System.out.println("Saindo do Sistema... ");
- //					Thread.sleep(3000);
- //			break;
- //				
- //			default: System.out.println("Opção Inválida");
- //		}
- //	}
-
   }
