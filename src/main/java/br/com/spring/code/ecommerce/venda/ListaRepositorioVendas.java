@@ -128,15 +128,16 @@ public class ListaRepositorioVendas implements RepositorioVendas {
 		}
 
 		return listaDeVendas.size() > 0 ? listaDeVendas : null;
+	}
 
-
+	/*
 	 * @descrição Percorre a lista em busca de vendas cujo o id seja correspondente
 	 * 
 	 */
-	
-public Venda procurarVendaPorId(Integer id) {
-		
+
+	public Venda procurarVendaPorId(Integer id) {
 		for (Venda venda : repositorioDeVendas) {
+			// TODO: Verificar se é o ID da venda ou ID do fincanceiro relacionado;
 			if (venda.getFinanceiro().getId().equals(id)) {
 				return venda;
 			}
@@ -144,3 +145,4 @@ public Venda procurarVendaPorId(Integer id) {
 		return null;
 	}
 }
+
