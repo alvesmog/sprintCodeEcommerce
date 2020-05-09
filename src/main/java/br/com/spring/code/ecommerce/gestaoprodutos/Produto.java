@@ -30,7 +30,6 @@ public class Produto {
 	
 	// Construtor vazio
 	public Produto() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	// Getters e Setters

@@ -10,7 +10,7 @@ public class Categoria {
 	// Construtor
 
 	public Categoria() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Categoria(Integer id, String nome) {

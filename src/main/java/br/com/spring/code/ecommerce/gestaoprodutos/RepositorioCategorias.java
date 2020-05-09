@@ -9,7 +9,6 @@ public class RepositorioCategorias {
 
 	// Construtor
 	public RepositorioCategorias() {
-		// TODO Auto-generated constructor stub
 
 		listaDeCategorias = new ArrayList<Categoria>();
 	}
