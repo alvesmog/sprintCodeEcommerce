@@ -54,15 +54,37 @@ public class ListaRepositorioAnuncio implements RepositorioAnuncio {
 	}
 
 	public static void remover(Integer Id) {
-
+Anuncio excluir = null;
 		for (Anuncio anuncio : anuncios) {
 			if (anuncio.getIdAnuncio() == Id) {
-				anuncios.remove(anuncio);
+				excluir=anuncio;
 
 			}
 
 		}
+		if(excluir!=null) {
+			anuncios.remove(excluir);
+		}else {
+			System.out.println("Anúncio não encontrado para exclusão");
+		}
 	}
+	
+	public static Anuncio getById(Integer id) {
+		Anuncio procurado = null;
+				for (Anuncio anuncio : anuncios) {
+					if (anuncio.getIdAnuncio() == id) {
+						procurado=anuncio;
+
+					}
+
+				}
+				if(procurado!=null) {
+					return procurado;
+				}else {
+					System.out.println("Anúncio não encontrado");
+					return null;
+				}
+			}
 
 	public void removerAnuncio(Integer Id) {
 

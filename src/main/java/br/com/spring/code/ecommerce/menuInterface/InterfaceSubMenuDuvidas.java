@@ -54,7 +54,6 @@ public class InterfaceSubMenuDuvidas {
 
 		Pessoa pessoaAutenticada = null;
 
-
 	
 		switch (op) {
 
@@ -81,13 +80,16 @@ public class InterfaceSubMenuDuvidas {
 				if (produto != null) {
 					Duvidas duvidas = RepositorioDuvidas.buscarDuvidaporId(produto.getId());
 					System.out.println("Digite a sua pergunta: ");
-					String pergunta = leia.nextLine();
+					leia.nextLine();
+					String pergunta = leia.next();
 					Random gerador = new Random();
 					Integer aleatorio = gerador.nextInt(100000);
 					Interacoes interacao = new Interacoes(aleatorio, pergunta, pessoaAutenticada);
 					duvidas.inserirInteracao(interacao);
-					System.out.println("Pergunta realizada: ");
+					System.out.println("Pergunta realizada com sucesso. ");
 					System.out.println(interacao);
+					mostrarMenuDuvidas(pessoas, produtos);
+					
 					
 				} else {
 					System.out.println("Anúncio não encontrado");
@@ -129,10 +131,13 @@ public class InterfaceSubMenuDuvidas {
 				
 				if(interacao!=null) {
 					System.out.println("Digite a sua resposta: ");
-					String resposta = leia.nextLine();
+					leia.nextLine();
+					String resposta = leia.next();
 					interacao.setResposta(resposta);
+					mostrarMenuDuvidas(pessoas, produtos);
 				}else {
 					System.out.println("Não há perguntas com este ID");
+					mostrarMenuDuvidas(pessoas, produtos);
 				}
 				
 				
@@ -170,6 +175,7 @@ public class InterfaceSubMenuDuvidas {
 					if (produto1 != null ) {
 						Duvidas duvidas = RepositorioDuvidas.buscarDuvidaporId(produto1.getId());
 						duvidas.mostrarTodasInterações();
+						mostrarMenuDuvidas(pessoas, produtos);
 						
 					} else {
 						System.out.println("Produto não encontrado");

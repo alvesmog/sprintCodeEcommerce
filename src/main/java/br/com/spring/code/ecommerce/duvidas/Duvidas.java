@@ -14,12 +14,12 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 public class Duvidas {
 	private Integer id;
 	private Integer idProduto;
-	private List<Interacoes> interacoes;
+	private List<Interacoes> interacoes= new ArrayList<>();
 
 	public Duvidas(Integer id, Produto produto) {
 		this.idProduto = produto.getId();
 		this.id = id;
-
+		
 
 	}
 

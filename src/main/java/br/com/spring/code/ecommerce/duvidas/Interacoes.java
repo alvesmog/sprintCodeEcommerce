@@ -68,7 +68,7 @@ public class Interacoes {
 	@Override
 	public String toString() {
 		
-		if(resposta.length()>0) {
+		if(resposta!=null) {
 			 return "Id: "+id+"\n"+"Usuário da pergunta: "+idUsuarioPergunta+"\n"+
 						"Pergunta: "+pergunta+"\n"+"Resposta: "+resposta+"\n";
 		}else {

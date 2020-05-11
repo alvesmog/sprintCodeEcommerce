@@ -105,8 +105,7 @@ public class Anuncio {
 	// [fix] source: Aula 18/04,  9-12h: https://github.com/alvesmog/sprintCodeEcommerce/commit/b069ece92b571a188769eec075737660e8a44743
 	@Override
  	public String toString() {
- 		return "Anuncio [IdAnuncio=" + getIdAnuncio() + ", Pessoa=" + getPessoa() + ", Produto="
- 				+ getProduto() + ", DataAnuncio=" + getDataAnuncio() + ", Duvidas=" + getDuvidas()
- 				+ ", Valor=" + getValor() + ", Localizacao=" + getLocalizacao() + "]";
+ 		return "Anuncio [IdAnuncio=" + getIdAnuncio() + ", Pessoa=" + getPessoa().getNome() + ", Produto="
+ 				+ produto.getTitulo() + ", Data do Anúncio=" + getDataAnuncio() + ", Valor=" + getValor() + "]";
  	}
 }

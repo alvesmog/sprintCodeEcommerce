@@ -1,17 +1,18 @@
 package br.com.spring.code.ecommerce.duvidas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioDuvidas {
-	private static List<Duvidas> duvidas;
+	private static List<Duvidas> duvidas = new ArrayList<>();
 	
 	public static void salvarDuvida(Duvidas duvidaNova) {
-	duvidas.add(duvidaNova);
+		duvidas.add(duvidaNova);
 		
 	}
 	
 	public static void removerDuvida(Duvidas duvidaNova) {
-	duvidas.remove(duvidaNova);
+			duvidas.remove(duvidaNova);
 		
 	}
 	

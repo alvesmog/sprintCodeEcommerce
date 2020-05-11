@@ -44,27 +44,25 @@ public class InterfaceSubMenuAnuncios {
 
 	public static void ingressaOpcaoAtendimento(int op, RepositorioPessoas pessoas, RepositorioProdutos produtos) {
 
-		
 		Scanner leia = new Scanner(System.in);
 
 		Pessoa pessoaAutenticada = null;
 
-	
 		switch (op) {
 
 		case 1: // Criar Anúncio
-			
-			if(pessoaAutenticada==null) {
 
-			System.out.println("Login: ");
+			if (pessoaAutenticada == null) {
 
-			String login = leia.next();
+				System.out.println("Login: ");
 
-			System.out.println("Senha: ");
+				String login = leia.next();
 
-			String senha = leia.next();
+				System.out.println("Senha: ");
 
-			pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
+				String senha = leia.next();
+
+				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
 			}
 			if (pessoaAutenticada != null) {
 				System.out.println("Digite o id do produto a ser anunciado: ");
@@ -74,14 +72,20 @@ public class InterfaceSubMenuAnuncios {
 
 				if (produto != null && produto.getIdPessoa().equals(pessoaAutenticada.getId())) {
 					Date dataAnuncio = new Date();
+				
 					Duvidas duvidas = new Duvidas(produto.getId(), produto);
+					RepositorioDuvidas.salvarDuvida(duvidas);
+					
 					System.out.println("Digite o valor do produto a ser anunciado: ");
 					Double valor = leia.nextDouble();
 					GeoLocalizacao localizacao = new GeoLocalizacao(produto.getId(), produto, -8.060628, -34.891295);
 					Anuncio anuncio = new Anuncio(pessoaAutenticada, produto, dataAnuncio, duvidas, valor, localizacao);
 					
+					anuncio.setIdAnuncio(produto.getId());
+
 					ListaRepositorioAnuncio.adicionar(anuncio);
-					
+					mostrarMenuAnuncios(pessoas, produtos);
+
 				} else {
 					System.out.println("Você não possui este produto para anunciar");
 					mostrarMenuAnuncios(pessoas, produtos);
@@ -94,8 +98,8 @@ public class InterfaceSubMenuAnuncios {
 			break;
 
 		case 2: // Excluir anúncio
-			
-			while(pessoaAutenticada==null) {
+
+			while (pessoaAutenticada == null) {
 				System.out.println("Login: ");
 
 				String login = leia.next();
@@ -105,30 +109,29 @@ public class InterfaceSubMenuAnuncios {
 				String senha = leia.next();
 
 				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
-				
+
 			}
 
 			System.out.println("Digite o id do anúncio:");
-			int idProcurado= leia.nextInt();
-			
+			int idProcurado = leia.nextInt();
+
 			Produto produto = produtos.procurarProduto(idProcurado);
-			
+
 			if (produto != null && produto.getIdPessoa().equals(pessoaAutenticada.getId())) {
 				ListaRepositorioAnuncio.remover(idProcurado);
-				
-			}else {
-				
+				mostrarMenuAnuncios(pessoas, produtos);
+
+			} else {
+
 				System.out.println("Você não possui este produto para excluir dos anúncios");
 				mostrarMenuAnuncios(pessoas, produtos);
-				
-			}
 
-		
+			}
 
 			break;
 
 		case 3: // Alterar anúncio
-			while(pessoaAutenticada==null) {
+			while (pessoaAutenticada == null) {
 
 				System.out.println("Login: ");
 
@@ -139,37 +142,36 @@ public class InterfaceSubMenuAnuncios {
 				String senha = leia.next();
 
 				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
-				}
-				if (pessoaAutenticada != null) {
-					System.out.println("Digite o id do produto a ser alterado: ");
-					int id = leia.nextInt();
+			}
+			if (pessoaAutenticada != null) {
+				System.out.println("Digite o id do produto a ser alterado: ");
+				int id = leia.nextInt();
 
-					Produto produto1 = produtos.procurarProduto(id);
+				Produto produto1 = produtos.procurarProduto(id);
 
-					if (produto1 != null && produto1.getIdPessoa().equals(pessoaAutenticada.getId())) {
-						Date dataAnuncio = new Date();
-						Duvidas duvidas = new Duvidas(produto1.getId(), produto1);
-						RepositorioDuvidas.salvarDuvida(duvidas);
-						System.out.println("Digite o valor do produto a ser anunciado: ");
-						Double valor = leia.nextDouble();
-						GeoLocalizacao localizacao = new GeoLocalizacao(produto1.getId(), produto1, -8.060628, -34.891295);
-						Anuncio anuncio = new Anuncio(pessoaAutenticada, produto1, dataAnuncio, duvidas, valor, localizacao);
-						
-						ListaRepositorioAnuncio.adicionar(anuncio);
-						
-					} else {
-						System.out.println("Você não possui este produto para alterar");
-						mostrarMenuAnuncios(pessoas, produtos);
-					}
+				if (produto1 != null && produto1.getIdPessoa().equals(pessoaAutenticada.getId())) {
+					Anuncio anuncio = ListaRepositorioAnuncio.getById(id);
+			
+					System.out.println("Digite o valor do produto a ser anunciado: ");
+					Double valor = leia.nextDouble();
+					anuncio.setValor(valor);
+
+				
+					mostrarMenuAnuncios(pessoas, produtos);
 
 				} else {
-					System.out.println("Usuário ou senha incorretos");
+					System.out.println("Você não possui este produto para alterar");
 					mostrarMenuAnuncios(pessoas, produtos);
 				}
+
+			} else {
+				System.out.println("Usuário ou senha incorretos");
+				mostrarMenuAnuncios(pessoas, produtos);
+			}
 			break;
 
 		case 4: // Mostrar anúncio por usuário
-			while(pessoaAutenticada==null) {
+			while (pessoaAutenticada == null) {
 				System.out.println("Login: ");
 
 				String login = leia.next();
@@ -179,15 +181,15 @@ public class InterfaceSubMenuAnuncios {
 				String senha = leia.next();
 
 				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
-				
+
 			}
-			
+
 			ListaRepositorioAnuncio.mostrarAnuncioPorUsuario(pessoaAutenticada.getId());
 
 			break;
 
 		case 5: // Mostrar todos os anúncios
-			while(pessoaAutenticada==null) {
+			while (pessoaAutenticada == null) {
 				System.out.println("Login: ");
 
 				String login = leia.next();
@@ -197,7 +199,7 @@ public class InterfaceSubMenuAnuncios {
 				String senha = leia.next();
 
 				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
-				
+
 			}
 			ListaRepositorioAnuncio.mostrarTodosAnuncios();
 
