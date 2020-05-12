@@ -118,6 +118,32 @@ public class Venda {
 	}
 	
 	/**
+	 * Transfere a pontuacao gerada, para as pessoas envolvidas: comprador e vendedor(es) dos anúncios vinculados a venda.
+	 * @param confirmacaoVenda
+	 * @param beneficio
+	 * @param comprador
+	 * @param listaDeAnuncios
+	 */
+	private void transferirBeneficios(
+			boolean confirmacaoVenda,
+			Double beneficio,
+			Pessoa comprador, 
+			List<Anuncio> listaDeAnuncios) {
+		
+		Integer operador = confirmacaoVenda ? 1 : -1;
+		
+		comprador.setConfiabilidade(
+				comprador.getConfiabilidade() + operador * beneficio
+				);
+		
+		for (Anuncio anuncio : listaDeAnuncios) {
+			anuncio.getPessoa().setConfiabilidade(
+					anuncio.getPessoa().getConfiabilidade() + operador * beneficio
+					);
+		}
+	}
+	
+	/**
 	 * Usado para executar a confirmação final da venda;
 	 * @param confirmacao (boolean)
 	 */
@@ -128,6 +154,13 @@ public class Venda {
 		} else {
 			setVendaConfirmada(false);
 		}
+		
+		this.transferirBeneficios(
+				confirmacao, 
+				this.getFinanceiro().getBeneficio(), 
+				this.getPessoa(), 
+				this.getAnuncio()
+				);
 	}
 
 	@Override
