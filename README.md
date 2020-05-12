@@ -16,7 +16,9 @@ O projeto tem por objetivo criar a estrutura de uma `loja virtual`. Inicialmente
 5. [Venda](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/venda);
 6. [Atendimento](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/atendimento);
 7. [Dúvidas](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/duvidas);
-8. [Geolocalização](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/geolocalizacao)
+8. [Geolocalização](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/geolocalizacao);
+9. [Controlador de Sessao](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/sessao);
+10. [Interfaces](https://github.com/alvesmog/sprintCodeEcommerce/tree/master/src/main/java/br/com/spring/code/ecommerce/menuInterface)
 
 ## Contribuindo com <Projeto Final - Módulo 9>
 <!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file---> 
