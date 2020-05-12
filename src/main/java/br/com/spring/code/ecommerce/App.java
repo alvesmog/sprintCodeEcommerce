@@ -174,7 +174,7 @@ public class App
 				} while (!opcao.equals(0));
 				break;
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
-        InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas,produtos);
+				InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas,produtos,anuncios);
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
 				
@@ -191,12 +191,14 @@ public class App
 
 				} while (!opcao.equals(0));
 				break;
+				
 			case 5: // chamar a classe/metodo do submenu de gestão de atendimento
-        InterfaceSubMenuAtendimento.mostrarMenuAtendimento(pessoas);
+				InterfaceSubMenuAtendimento.mostrarMenuAtendimento(pessoas);
 				break;
-      case 6: // PR #33 => chamar a classe/metodo do submenu de duvidas sobre um produto
-        InterfaceSubMenuDuvidas.mostrarMenuDuvidas(pessoas, produtos);
-        break;
+				
+			case 6: // PR #33 => chamar a classe/metodo do submenu de duvidas sobre um produto
+				InterfaceSubMenuDuvidas.mostrarMenuDuvidas(pessoas, produtos);
+				break;
 
 			case 0:
 				System.out.println("Saindo do Sistema... ");
