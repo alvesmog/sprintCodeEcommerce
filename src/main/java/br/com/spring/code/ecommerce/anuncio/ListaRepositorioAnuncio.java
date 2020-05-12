@@ -9,7 +9,7 @@ public class ListaRepositorioAnuncio implements RepositorioAnuncio{
 	Integer indiceUnico = 0;
 
 	public ListaRepositorioAnuncio() {
-		anuncios = = new ArrayList<Anuncio>();
+		anuncios = new ArrayList<Anuncio>();
 	}
 
 	private Integer incrementaIndiceUnico(Integer indice) {
@@ -38,6 +38,12 @@ public class ListaRepositorioAnuncio implements RepositorioAnuncio{
 	 * @return {@code System.out.println()}
 	 */
 	public void exibirTodosAnunciosNoConsole() {
+		
+		if (anuncios == null | anuncios.size() == 0) {
+			System.out.println(" > Não existem anúncios cadastrados.");
+			return;
+		}
+		
 		for (Anuncio anuncio : anuncios) {
 			System.out.println(anuncio.mostrarInfo());
 
