@@ -40,7 +40,7 @@ public class InterfaceSubMenuPessoas {
   	 * Autor: Henrique
   	 * 1. ATUALIZADO O MENU PARA CADASTRO DE NOVO USUÁRIO
   	 */
-  	public void ingressaOpcoesGestaoPessoa(int op, RepositorioPessoas pessoas) throws InterruptedException {
+  	public int ingressaOpcoesGestaoPessoa(int op, RepositorioPessoas pessoas) throws InterruptedException {
  		InterfaceDoApp princ = null;
  		Scanner leia = new Scanner(System.in);
   		switch (op) {
@@ -138,16 +138,15 @@ public class InterfaceSubMenuPessoas {
  					pessoas.remover(idRemove);
  			break;
  			case 5: System.out.println("Voltando ao Menu Principal");
- 					InterfaceDoApp menuGeral = new InterfaceDoApp();
- 					menuGeral.mostrarMenuOpcoes();
- 					Thread.sleep(2000);
- 			break;
+ 					Thread.sleep(1000);
+ 					return 0;
+ 					
  			case 0: System.out.println("Saindo do Sistema...");
  					Thread.sleep(2000);
  					System.exit(0);
  			break;
  			default: System.out.println("Opção Inválida!");;
  		}
-
+  		return op;
   	}
 }

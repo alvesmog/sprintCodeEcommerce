@@ -160,11 +160,10 @@ public class App
 			Integer opcao;
 			switch (rep) {
 			case 1:
-				int op;
 				do {
-					op = menuPessoas.mostrarSubMenuPessoas();
-					menuPessoas.ingressaOpcoesGestaoPessoa(op, pessoas);
-				} while (op != 0);
+					opcao = menuPessoas.mostrarSubMenuPessoas();
+					opcao = menuPessoas.ingressaOpcoesGestaoPessoa(opcao, pessoas);
+				} while (!opcao.equals(0));
 				break;
 			case 2 : //chamar a classe/metodo do submenu de gestão de produtos 		
 				
