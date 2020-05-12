@@ -38,12 +38,20 @@ public class ListaRepositorioAnuncio implements RepositorioAnuncio{
 	 * @return {@code System.out.println()}
 	 */
 	public void exibirTodosAnunciosNoConsole() {
+		
+		if (anuncios == null | anuncios.size() == 0) {
+			System.out.println(" > Não existem anúncios cadastrados.");
+			return;
+		}
+		
 		for (Anuncio anuncio : anuncios) {
 			System.out.println(anuncio.mostrarInfo());
+
 		}
 	}
 
 	public Anuncio procurarAnuncioPorId(Integer id) {
+
 
 		for (Anuncio anuncio : anuncios) {
 			if (id.equals(anuncio.getIdAnuncio())) return anuncio;
@@ -93,5 +101,4 @@ public class ListaRepositorioAnuncio implements RepositorioAnuncio{
 
 		return false;
 	}
-
 }

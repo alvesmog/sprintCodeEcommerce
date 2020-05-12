@@ -10,13 +10,28 @@ package br.com.spring.code.ecommerce.atendimento;
  */
 
 public class MensagensAtendimento {
+	public Integer getIdAtendimento() {
+		return idAtendimento;
+	}
+
+
+	public void setIdAtendimento(Integer idAtendimento) {
+		this.idAtendimento = idAtendimento;
+	}
+
+
+	public void setIdMensagemAtendimento(Integer idMensagemAtendimento) {
+		this.idMensagemAtendimento = idMensagemAtendimento;
+	}
+
+	private Integer idAtendimento;
 	private Integer idMensagemAtendimento;
 	private EmissorMensagem emissorMensagem;
 	private String mensagem;
 	
 	
 	public MensagensAtendimento(Integer idAtendimento,Integer idMensagemAtendimento, EmissorMensagem emissorMensagem, String mensagem) {
-		super();
+		this.idAtendimento = idAtendimento;
 		this.idMensagemAtendimento = idMensagemAtendimento;
 		this.emissorMensagem = emissorMensagem;
 		this.mensagem = mensagem;
@@ -41,7 +56,7 @@ public class MensagensAtendimento {
 	
 	@Override
 		public String toString() {
-			return "Id da Mensagem: "+idMensagemAtendimento+"\n"+ "Emissor da mensagem "+emissorMensagem + "\n"
+			return "\nId da Mensagem: "+idMensagemAtendimento+"\n"+ "Emissor: "+emissorMensagem + "\n"
 		 + "Mensagem: "+mensagem +"\n";
 		}
 

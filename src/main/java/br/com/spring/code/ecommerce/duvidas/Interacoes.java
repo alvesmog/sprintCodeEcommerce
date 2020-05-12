@@ -1,5 +1,6 @@
 package br.com.spring.code.ecommerce.duvidas;
 
+import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
 import br.com.spring.code.ecommerce.gestaopessoas.RepositorioPessoas;
 import br.com.spring.code.ecommerce.gestaopessoas.Usuario;
 
@@ -11,8 +12,8 @@ public class Interacoes {
 	private String resposta;
 	
 	
-	public Interacoes(Integer id, String pergunta, Usuario usuario) {
-		this.idUsuarioPergunta= usuario.getId();
+	public Interacoes(Integer id, String pergunta, Pessoa pessoa) {
+		this.idUsuarioPergunta= pessoa.getId();
 		this.id = id;
 		this.pergunta = pergunta;
 		this.status = StatusInteracoes.analise;
@@ -61,12 +62,13 @@ public class Interacoes {
 
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
+		this.status= status.ativo;
 	}
 	
 	@Override
 	public String toString() {
 		
-		if(resposta.length()>0) {
+		if(resposta!=null) {
 			 return "Id: "+id+"\n"+"Usuário da pergunta: "+idUsuarioPergunta+"\n"+
 						"Pergunta: "+pergunta+"\n"+"Resposta: "+resposta+"\n";
 		}else {

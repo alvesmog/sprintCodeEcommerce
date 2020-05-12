@@ -1,21 +1,22 @@
 package br.com.spring.code.ecommerce.duvidas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioDuvidas {
-	private static List<Duvidas> duvidas;
+	private static List<Duvidas> duvidas = new ArrayList<>();
 	
 	public static void salvarDuvida(Duvidas duvidaNova) {
-	duvidas.add(duvidaNova);
+		duvidas.add(duvidaNova);
 		
 	}
 	
 	public static void removerDuvida(Duvidas duvidaNova) {
-	duvidas.remove(duvidaNova);
+			duvidas.remove(duvidaNova);
 		
 	}
 	
-	public Duvidas buscarDuvidaporId(Integer idDuvida) {
+	public static Duvidas buscarDuvidaporId(Integer idDuvida) {
 		Duvidas duvidaEncontrada=null;
 		for(Duvidas duvida: duvidas) {
 			if (duvida.getId().equals(idDuvida)) {
@@ -29,7 +30,7 @@ public class RepositorioDuvidas {
 	}
 	
 	
-	public Duvidas buscarDuvidaporIddoProduto(Integer idProduto) {
+	public Duvidas  buscarDuvidaporIddoProduto(Integer idProduto) {
 		Duvidas duvidaEncontrada=null;
 		for(Duvidas duvida: duvidas) {
 			if (duvida.getIdProduto().equals(idProduto)) {

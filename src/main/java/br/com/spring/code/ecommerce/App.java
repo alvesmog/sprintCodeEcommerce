@@ -22,6 +22,9 @@ import br.com.spring.code.ecommerce.gestaoprodutos.Produto;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioCategorias;
 import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceDoApp;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuAnuncios;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuAtendimento;
+import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuDuvidas;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuPessoas;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuProdutos;
 import br.com.spring.code.ecommerce.menuInterface.InterfaceSubMenuVenda;
@@ -171,6 +174,7 @@ public class App
 				} while (!opcao.equals(0));
 				break;
 			case 3: // chamar a classe/metodo do submenu de gestão de anuncio
+				InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas,produtos,anuncios);
 				break;
 			case 4: // chamar a classe/metodo do submenu de gestão de vendas
 				
@@ -187,7 +191,13 @@ public class App
 
 				} while (!opcao.equals(0));
 				break;
+				
 			case 5: // chamar a classe/metodo do submenu de gestão de atendimento
+				InterfaceSubMenuAtendimento.mostrarMenuAtendimento(pessoas);
+				break;
+				
+			case 6: // PR #33 => chamar a classe/metodo do submenu de duvidas sobre um produto
+				InterfaceSubMenuDuvidas.mostrarMenuDuvidas(pessoas, produtos);
 				break;
 
 			case 0:
@@ -200,6 +210,5 @@ public class App
 			}
 
 		} while (rep != 0);
-
 	}
 }
