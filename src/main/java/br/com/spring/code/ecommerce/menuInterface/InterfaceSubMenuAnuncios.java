@@ -1,11 +1,13 @@
 package br.com.spring.code.ecommerce.menuInterface;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 import br.com.spring.code.ecommerce.anuncio.Anuncio;
 import br.com.spring.code.ecommerce.anuncio.ListaRepositorioAnuncio;
+import br.com.spring.code.ecommerce.anuncio.RepositorioAnuncio;
 import br.com.spring.code.ecommerce.atendimento.Atendimento;
 
 import br.com.spring.code.ecommerce.atendimento.RepositorioAtendimento;
@@ -20,7 +22,11 @@ import br.com.spring.code.ecommerce.gestaoprodutos.RepositorioProdutos;
 
 public class InterfaceSubMenuAnuncios {
 
-	public static void mostrarMenuAnuncios(RepositorioPessoas pessoas, RepositorioProdutos produtos) {
+	public static void mostrarMenuAnuncios(
+			RepositorioPessoas pessoas, 
+			RepositorioProdutos produtos,
+			RepositorioAnuncio anuncios
+			) {
 		Scanner leia = new Scanner(System.in);
 		int opcao = 0;
 
@@ -38,11 +44,16 @@ public class InterfaceSubMenuAnuncios {
 		System.out.println("\n Digite uma opção: ");
 		opcao = leia.nextInt();
 
-		ingressaOpcaoAtendimento(opcao, pessoas, produtos);
+		ingressaOpcaoAtendimento(opcao, pessoas, produtos, anuncios);
 
 	}
 
-	public static void ingressaOpcaoAtendimento(int op, RepositorioPessoas pessoas, RepositorioProdutos produtos) {
+	public static void ingressaOpcaoAtendimento(
+			int op, 
+			RepositorioPessoas pessoas, 
+			RepositorioProdutos produtos,
+			RepositorioAnuncio anuncios
+			) {
 
 		Scanner leia = new Scanner(System.in);
 
@@ -83,17 +94,19 @@ public class InterfaceSubMenuAnuncios {
 					
 					anuncio.setIdAnuncio(produto.getId());
 
-					ListaRepositorioAnuncio.adicionar(anuncio);
-					mostrarMenuAnuncios(pessoas, produtos);
+					anuncios.criarAnuncio(anuncio);
+					System.out.println("\n> Anuncio criado:\n" + anuncio.mostrarInfo());
+					
+					mostrarMenuAnuncios(pessoas, produtos, anuncios);
 
 				} else {
 					System.out.println("Você não possui este produto para anunciar");
-					mostrarMenuAnuncios(pessoas, produtos);
+					mostrarMenuAnuncios(pessoas, produtos, anuncios);
 				}
 
 			} else {
 				System.out.println("Usuário ou senha incorretos");
-				mostrarMenuAnuncios(pessoas, produtos);
+				mostrarMenuAnuncios(pessoas, produtos, anuncios);
 			}
 			break;
 
@@ -112,19 +125,19 @@ public class InterfaceSubMenuAnuncios {
 
 			}
 
-			System.out.println("Digite o id do anúncio:");
+			System.out.println("Digite o id do produto:");
 			int idProcurado = leia.nextInt();
 
 			Produto produto = produtos.procurarProduto(idProcurado);
 
 			if (produto != null && produto.getIdPessoa().equals(pessoaAutenticada.getId())) {
-				ListaRepositorioAnuncio.remover(idProcurado);
-				mostrarMenuAnuncios(pessoas, produtos);
+				anuncios.removerAnuncio(idProcurado);
+				mostrarMenuAnuncios(pessoas, produtos, anuncios);
 
 			} else {
 
 				System.out.println("Você não possui este produto para excluir dos anúncios");
-				mostrarMenuAnuncios(pessoas, produtos);
+				mostrarMenuAnuncios(pessoas, produtos, anuncios);
 
 			}
 
@@ -150,23 +163,24 @@ public class InterfaceSubMenuAnuncios {
 				Produto produto1 = produtos.procurarProduto(id);
 
 				if (produto1 != null && produto1.getIdPessoa().equals(pessoaAutenticada.getId())) {
-					Anuncio anuncio = ListaRepositorioAnuncio.getById(id);
+					Anuncio anuncio = anuncios.procurarAnuncioPorId(id);
 			
 					System.out.println("Digite o valor do produto a ser anunciado: ");
 					Double valor = leia.nextDouble();
 					anuncio.setValor(valor);
 
 				
-					mostrarMenuAnuncios(pessoas, produtos);
+					mostrarMenuAnuncios(pessoas, produtos, anuncios);
 
 				} else {
 					System.out.println("Você não possui este produto para alterar");
-					mostrarMenuAnuncios(pessoas, produtos);
+					mostrarMenuAnuncios(pessoas, produtos, anuncios);
 				}
 
 			} else {
+				
 				System.out.println("Usuário ou senha incorretos");
-				mostrarMenuAnuncios(pessoas, produtos);
+				InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas, produtos,anuncios);
 			}
 			break;
 
@@ -184,25 +198,27 @@ public class InterfaceSubMenuAnuncios {
 
 			}
 
-			ListaRepositorioAnuncio.mostrarAnuncioPorUsuario(pessoaAutenticada.getId());
-
+			List<Anuncio> listaDeAnunciosPorUsuario =  anuncios.procurarAnuncioPorVendedor(pessoaAutenticada.getId());
+			
+			if (listaDeAnunciosPorUsuario == null) {
+				System.out.println("> Não existem anuncios criados por este usuário.");
+				break;
+			} else if (listaDeAnunciosPorUsuario.size() == 0) {
+				System.out.println("> Não existem anuncios criados por este usuário.");
+				break;
+			}
+			System.out.println(" > Os anuncios ligados a este usuario são: \n");
+			for (Anuncio anuncio : listaDeAnunciosPorUsuario) {
+				System.out.println(anuncio.mostrarInfo());
+			}
+			InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas, produtos, anuncios);
 			break;
 
 		case 5: // Mostrar todos os anúncios
-			while (pessoaAutenticada == null) {
-				System.out.println("Login: ");
-
-				String login = leia.next();
-
-				System.out.println("Senha: ");
-
-				String senha = leia.next();
-
-				pessoaAutenticada = pessoas.estaAutenticadoRetornaPessoa(login, senha);
-
-			}
-			ListaRepositorioAnuncio.mostrarTodosAnuncios();
-
+			
+			anuncios.exibirTodosAnunciosNoConsole();
+			InterfaceSubMenuAnuncios.mostrarMenuAnuncios(pessoas, produtos, anuncios);
+			
 			break;
 
 		case 6:
