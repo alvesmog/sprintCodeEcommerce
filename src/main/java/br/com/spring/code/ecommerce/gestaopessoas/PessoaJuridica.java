@@ -1,30 +1,40 @@
 package br.com.spring.code.ecommerce.gestaopessoas;
 
 public class PessoaJuridica extends Pessoa {
-	
+
 	private String cnpj;
-	private String razaoSocial;	
-	
-	// [fix] Atualizados os contrutores
-	
+	private String razaoSocial;
+
 	public PessoaJuridica() {
-		super();		
+		super();
 	}
-	public PessoaJuridica(String nome, String telefone, String email,Endereco endereco, Usuario usuario, String cnpj,String razaoSocial) {
+
+	/**
+	 * Instancia uma nova pessoa juridica.
+	 *
+	 * @param nome        the nome
+	 * @param telefone    the telefone
+	 * @param email       the email
+	 * @param endereco    the endereco
+	 * @param usuario     the usuario
+	 * @param cnpj        the cnpj
+	 * @param razaoSocial the razao social
+	 */
+	public PessoaJuridica(String nome, String telefone, String email, Endereco endereco, Usuario usuario, String cnpj,
+			String razaoSocial) {
 		super(nome, telefone, email, endereco, usuario);
- 		this.cnpj = cnpj;
- 		this.razaoSocial = razaoSocial;
- 	}
+		this.cnpj = ValidadorCpfCnpj.isValidCnpj(cnpj);
+		this.razaoSocial = razaoSocial;
+	}
 
 	public String getCnpj() {
-		return cnpj;
+		return ValidadorCpfCnpj.isValidCnpj(cnpj);
 	}
-	
-	// [fix] nome do metodo estava "setCpf()"
+
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}	
-	
+	}
+
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}

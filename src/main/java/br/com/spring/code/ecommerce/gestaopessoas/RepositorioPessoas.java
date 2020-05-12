@@ -14,10 +14,10 @@ import java.util.List;
 public class RepositorioPessoas {
 	
 	// [fix] source: https://github.com/alvesmog/sprintCodeEcommerce/commit/4aa4cde652ed03a8c2f3b81b59eed7154715f05e
-	List<Pessoa> listaDePessoas;
+	private List<Pessoa> listaDePessoas = new ArrayList<Pessoa>();
 
 	public RepositorioPessoas() {
-		this.listaDePessoas = new ArrayList<Pessoa>();
+		
 	}
 
 	public void exibirTodasPessoas() {

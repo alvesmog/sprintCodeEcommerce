@@ -15,6 +15,7 @@ public class Financeiro {
 	private double valorComissao;
 	private double valorFrete;
 	private Date dataDoPagamento;
+	private double beneficio;
 
 	// Construtor
 
@@ -22,7 +23,7 @@ public class Financeiro {
 			Integer id,
 			Pagamento formaPagamento, 
 			Date data) {
-		
+
 		this.id = id;
 		this.formaPagamento = formaPagamento;
 		this.dataDoPagamento = data;
@@ -53,13 +54,17 @@ public class Financeiro {
 	public double getValorTotal() {
 		return valorTotal;
 	}
-	
+
 	public double getValorFrete() {
 		return valorFrete;
 	}
-	
+
 	public Date getDataDoPagamento() {
 		return dataDoPagamento;
+	}
+	
+	public double getBeneficio() {
+		return beneficio;
 	}
 
 	public void setId(Integer id) {
@@ -76,6 +81,10 @@ public class Financeiro {
 
 	private void setValorFrete(double valorFrete) {
 		this.valorFrete = valorFrete;
+	}
+	
+	private void setBeneficio(double beneficio) {
+		this.beneficio = beneficio;
 	}
 
 	// MÉTODOS
@@ -95,6 +104,7 @@ public class Financeiro {
 		// Ao final da lista, seta a atributo `ValorTotal` como soma dos valores.
 		this.setValorTotal(somaDeValores);
 		this.calcularComissao(somaDeValores);
+		this.calcularBeneficio();
 	}
 
 	/**
@@ -119,23 +129,21 @@ public class Financeiro {
 
 		if (quantidade > 1) {	// Para quantidades de anuncios > 1
 
-			for (int i = 0; i < listaDeAnuncios.size(); i++) {
+			switch (tipoDeEnvio) {
+			case PAC:
+				valorDoEnvio = 10 + (5 * quantidade);
+				break;
 
-				switch (tipoDeEnvio) {
-				case PAC:
-					valorDoEnvio = 10 + (5 * quantidade);
-					break;
+			case SEDEX:
+				valorDoEnvio = 15.0 + (6 * quantidade);;
+				break;
 
-				case SEDEX:
-					valorDoEnvio = 15.0 + (6 * quantidade);;
-					break;
+			case SEDEX_10:
+				valorDoEnvio = 20.0 + (7 * quantidade);;
+				break;
 
-				case SEDEX_10:
-					valorDoEnvio = 20.0 + (7 * quantidade);;
-					break;
-				}
 			}
-			
+
 		} else {	// Para venda de apenas anuncio.
 
 			// Simplificado: valor fixo a depender do tipo de envio
@@ -158,6 +166,11 @@ public class Financeiro {
 		this.setValorFrete(valorDoEnvio);
 	}
 	
+	private void calcularBeneficio() {
+		double beneficioCalculado = Math.floor(Math.random()*150);
+		this.setBeneficio(beneficioCalculado);
+	}
+
 	/**
 	 * {@code toString()} customizado para objeto `Financeiro`
 	 */
@@ -165,21 +178,23 @@ public class Financeiro {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Financeiro [ id = ");
-		builder.append(id);
+		builder.append(this.getId());
 		builder.append(", formaPagamento = ");
-		builder.append(formaPagamento);
+		builder.append(this.getFormaPagamento());
 		builder.append(", valorTotal = ");
-		builder.append(valorTotal);
+		builder.append(this.getValorTotal());
 		builder.append(", valorComissao = ");
-		builder.append(valorComissao);
+		builder.append(this.getValorComissao());
 		builder.append(", valorFrete = ");
-		builder.append(valorFrete);
+		builder.append(this.getValorFrete());
 		builder.append(", dataDoPagamento = ");
-		builder.append(dataDoPagamento);
+		builder.append(this.getDataDoPagamento());
+		builder.append(", beneficioGerado = ");
+		builder.append(this.getBeneficio());
 		builder.append(" ]");
 		return builder.toString();
 	}
-	
-	
+
+
 
 }

@@ -3,98 +3,96 @@ package br.com.spring.code.ecommerce.anuncio;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.spring.code.ecommerce.gestaopessoas.Pessoa;
+public class ListaRepositorioAnuncio implements RepositorioAnuncio{
 
-public class ListaRepositorioAnuncio implements RepositorioAnuncio {
+	List<Anuncio> anuncios;
+	Integer indiceUnico = 0;
 
-	static List<Anuncio> anuncios = new ArrayList<Anuncio>();
-
-	public void CriarAnuncio(Anuncio anuncio) {
-
+	public ListaRepositorioAnuncio() {
+		anuncios = = new ArrayList<Anuncio>();
 	}
 
-	public List<Anuncio> listarAnuncios() {
+	private Integer incrementaIndiceUnico(Integer indice) {
+		this.indiceUnico++;
+		return this.indiceUnico;
+	}
 
+	/**
+	 * Adiciona um novo 'Anuncio' e gera um novo ID, auto incrementando
+	 */
+	public void criarAnuncio(Anuncio anuncio) {
+		anuncio.setIdAnuncio(
+				this.incrementaIndiceUnico(this.indiceUnico)
+				);
+		anuncios.add(anuncio);
+	}
+
+	public List<Anuncio> listarAnuncios() {	
 		return this.anuncios;
 	}
 
-	public static void mostrarTodosAnuncios() {
+	/**
+	 * Varre o repositório, e aplica o {@code System.out.println()}
+	 * em cada elemento exibindo suas informações no console.
+	 * 
+	 * @return {@code System.out.println()}
+	 */
+	public void exibirTodosAnunciosNoConsole() {
 		for (Anuncio anuncio : anuncios) {
-
-			System.out.println(anuncio);
-
-		}
-	}
-
-	public static void mostrarAnuncioPorUsuario(int idUsuario) {
-		for (Anuncio anuncio : anuncios) {
-			if (anuncio.getPessoa().getId() == idUsuario) {
-				System.out.println(anuncio);
-
-			}
+			System.out.println(anuncio.mostrarInfo());
 
 		}
 	}
 
 	public Anuncio procurarAnuncioPorId(Integer id) {
 
+
+		for (Anuncio anuncio : anuncios) {
+			if (id.equals(anuncio.getIdAnuncio())) return anuncio;
+		}
+
 		return null;
 	}
 
-	public Anuncio procurarAnuncioPorVendedor(Pessoa pessoa) {
+	public List<Anuncio> procurarAnuncioPorVendedor(Integer vendedorId) {
 
-		return null;
-	}
+		List<Anuncio> anunciosDesseVendedor = new ArrayList<Anuncio>();
 
-	public static void adicionar(Anuncio anuncio) {
-		anuncios.add(anuncio);
-		System.out.println("Anúncio adicionado com sucesso!");
-		System.out.println("Detalhes: ");
-		System.out.println(anuncio);
-	}
-
-	public static void remover(Integer Id) {
-Anuncio excluir = null;
 		for (Anuncio anuncio : anuncios) {
-			if (anuncio.getIdAnuncio() == Id) {
-				excluir=anuncio;
-
+			if (anuncio.getPessoa().getId().equals(vendedorId)) {
+				anunciosDesseVendedor.add(anuncio);
 			}
+		}
 
-		}
-		if(excluir!=null) {
-			anuncios.remove(excluir);
-		}else {
-			System.out.println("Anúncio não encontrado para exclusão");
-		}
+		return anunciosDesseVendedor;
 	}
-	
-	public static Anuncio getById(Integer id) {
-		Anuncio procurado = null;
-				for (Anuncio anuncio : anuncios) {
-					if (anuncio.getIdAnuncio() == id) {
-						procurado=anuncio;
 
-					}
+	public List<Anuncio> procurarAnuncioPorProduto(Integer produtoId) {
 
-				}
-				if(procurado!=null) {
-					return procurado;
-				}else {
-					System.out.println("Anúncio não encontrado");
-					return null;
-				}
+		List<Anuncio> anunciosDesseVendedor = new ArrayList<Anuncio>();
+
+		for (Anuncio anuncio : anuncios) {
+			if (anuncio.getProduto().getId().equals(produtoId)) {
+				anunciosDesseVendedor.add(anuncio);
 			}
+		}
 
-	public void removerAnuncio(Integer Id) {
+		return anunciosDesseVendedor;
+	}
+
+	/**
+	 * Método para remover anúncio a partir do ID
+	 * 
+	 * @return boolean {@code true} se o anuncio for removido.
+	 */
+	public boolean removerAnuncio(Integer Id) {
 
 		for (Anuncio anuncio : anuncios) {
 			if (anuncio.getIdAnuncio() == Id) {
-				anuncios.remove(anuncio);
-
+				return this.anuncios.remove(anuncio);
 			}
-
 		}
-	}
 
+		return false;
+	}
 }

@@ -19,17 +19,17 @@ public class Produto {
 	
 	// Construtor
 	
-	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa) {
+	public Produto(Integer id, String titulo, String descricao, String foto, Pessoa pessoa, Categoria categoria) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.foto = foto;
 		this.idPessoa = pessoa.getId();
+		this.categoria = categoria;
 	}
 	
 	// Construtor vazio
 	public Produto() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	// Getters e Setters
@@ -135,13 +135,16 @@ public class Produto {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Produto [titulo=" + titulo 
-				+ ", Categoria=" + categoria.toString() 
+
+		return "Produto [Id=" + id 
+				+ ", Titulo=" + titulo 
+				+ ", Descricao=" + descricao
+				+ ", Quantidade=" + quantidade
+				+ ", Categoria=" + categoria
 				+ ", Estado=" + estado 
 				+ ", FaixaEtaria=" + faixaEtaria + "]\n";
 	}
-	
 }
